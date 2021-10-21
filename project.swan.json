@@ -14,25 +14,23 @@
     },
     "host": "baiduboxapp",
     "preview": {
-        "packageId": 1474443
+        "packageId": 1476116
     },
     "projectname": "彧繎博客",
     "publish": {
-        "tips": [
-            "小程序包内容将被百度解析和收录，用于内容的风险控制。",
-            "您已开通分享web化，请确保分享web化体验无问题后，再进行发布。"
-        ],
-        "version": "1.4.3"
+        "hideTips": true,
+        "tips": [],
+        "version": "1.4.5"
     },
     "setting": {
         "autoAudits": false,
         "enableScripts": false,
-        "urlCheck": true
+        "urlCheck": false
     },
     "swan": {
         "baiduboxapp": {
-            "swanJsVersion": "3.340.31",
-            "extensionJsVersion": "1.21.2"
+            "extensionJsVersion": "1.21.2",
+            "swanJsVersion": "3.340.31"
         }
     }
 }

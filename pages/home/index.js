@@ -56,7 +56,6 @@ Page({
         }).then(res => {
             let swiperList = [];
             var datas = res.result.list;
-
             for (var i = 0; i < datas.length; i++) {
                 //用for循环把所有的时间戳都转换程时间格式
                 datas[i]["PostTime"] = formatMsgTime(Number(datas[i]["PostTime"]) * 1000, 1);
@@ -127,7 +126,7 @@ Page({
                 keywords: res.result.Keywords,
                 description: res.result.Description,
                 articleTitle: res.result.Title,
-                // releaseDate: res.result.Time,
+                releaseDate: res.result.Time,
                 image: res.result.Logo
             });
         })

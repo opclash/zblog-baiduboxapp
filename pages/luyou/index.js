@@ -102,7 +102,7 @@ Page({
                 keywords: res.result.cate.flgjc,
                 description: res.result.cate.Intro,
                 articleTitle: res.result.cate.Name,
-                // releaseDate: res.result.cate.Time,
+                releaseDate: res.result.cate.Time,
                 image: res.result.Logo
             })
         })

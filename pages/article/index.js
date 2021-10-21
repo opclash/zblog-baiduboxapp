@@ -3,7 +3,6 @@ const app = getApp();
 import { getArticle } from '../../utils/request.js';
 import { toDate, formatMsgTime } from '../../utils/tool.js';
 
-
 Page({
     data: {
         id: '',

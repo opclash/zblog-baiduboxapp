@@ -67,6 +67,12 @@
         ]
     },
     "requiredBackgroundModes": ["audio"],
+    "networkTimeout": {
+        "request": 30000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
+    },
     "prefetch" : {
         "enabled": true
     },
@@ -74,5 +80,5 @@
         "enableStore": true
     },
     "useSwanNews": true,
-    "debug": false
+    "debug": true
 }
