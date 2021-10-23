@@ -5,7 +5,7 @@ import { toDate } from '../../utils/tool.js';
 
 Page({
     data: {
-        id: '3',
+        id: '62',
         // 地址
         result: {},
         // 内容
@@ -28,7 +28,7 @@ Page({
         var _then = this;
         // 获取文章详情
         getArticle({
-            id: 3
+            id: 62
         }).then(res => {
             var article = res.result.Content;
             let result = res.result.Content
@@ -55,48 +55,17 @@ Page({
     onShow: function () {
         var _then = this;
         getArticle({
-            id: 3,
+            id: 62,
         }).then(res => {
             swan.setNavigationBarTitle({ title: res.result.Title });
             res.result.PostTime = toDate(Number(res.result.PostTime) * 1000, 1);
             swan.setPageInfo({
-                title: res.result.Title + ' - 彧繎博客',
-                keywords: '彧繎博客，拿铁叔叔，前端狂魔',
-                description: '彧繎博客（opssh.cn）创建于 2021年5月20日，博主：拿铁叔叔，九零后技术宅，前端狂魔',
-                articleTitle: res.result.Title,
+                title: '大同网站建设、小程序开发、网络推广 - 彧繎博客',
+                keywords: '网站建设，小程序开发，网站设计，推广外包',
+                description: '本站从事网站建设、小程序开发，制作企业网站与小程序应用系统开发，提供个人、企业网站建设的外包托管，全球购海外推广等业务！',
+                articleTitle:'大同网站建设、小程序开发、网络推广',
                 releaseDate: res.result.PostTime
             })
         })
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-        requireDynamicLib('myDynamicLib').listenEvent();
-    },
-
-    clickComment(e) {
-        swan.showToast({
-            title: this.data.result.Title
-        });
-    },
-
-    // bindfavorstatuschange 事件可能的应用场景：用户点击关注后，设置隐藏按钮
-    favorstatuschange(e) {
-        if (e.detail && e.detail.isFavor === true) {
-            this.setData({ 'disabled': false });
-        }
-    },
-    // 取消事件后提示信息
-    statuschange(e) {
-        if (e.detail && e.detail.isFavor === false) {
-            setTimeout(() => {
-                swan.showToast({
-                    title: '我还他妈以为爱情来了！',
-                    icon: 'none'
-                });
-            });
-        }
     }
 });

@@ -1,5 +1,4 @@
 <view class="container">
-
     <text class="page-title" selectable='true'>{{ result.Title }}</text>
     <view class="article-item article-info">
         <view class="info">
@@ -28,7 +27,6 @@
                 copy-link='false'
             />
         </view>
-
         <!--<view class="reward-bt">
             <smt-like class="smt-like" like-type="0" like-param="{{likeParam}}" need-like-btn="{{true}}"></smt-like>
         </view>-->

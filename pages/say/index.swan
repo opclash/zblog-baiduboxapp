@@ -3,7 +3,7 @@
         <view class="list-item list-overlay-content">
             <view class="media media-21x9">
                 <view class="media-content"
-                    style="background-image: url('../../images/baidu/Say.png')">
+                    style="background-image: url('https://oss.opssh.cn/baidu/Say.png')">
                     <view class="overlay"></view>
                 </view>
             </view>

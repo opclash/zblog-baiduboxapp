@@ -18,23 +18,41 @@
         </block>
     </view>
 </view>
-<navigator url="/pages/search/index" class="search-group" hover-class="none">
-    <view class="search-input">大家都在使用在线搜索</view>
-    <image class="search-icon" src="../../images/icon/search-icon.svg" mode="aspectFill" />
-</navigator>
-<!-- 文章推荐 -->
-<view class="article-bottom">
-    <view class="article-item">
-        <view class="rn-container" s-for="item, index in hostList" s-key="index" bindtap="detailsBtn" data-id='{{item.ID}}'
-            hover-stay-time="100">
-            <view class="rn-footer">
-                <view class="badge-sticky"></view><text class="title">{{item.Title}}</text>
-            </view>
+
+<view class="tp-layer-padding">
+    <view class="tp-tool">
+        <navigator url="/pages/say/index" class="tp-tool-list text-shadow text-mauve" hover-class="none">
+            <text class="cuIcon-share lg"></text>
+            <view class="name">闲言</view>
+        </navigator>
+        <navigator url="/pages/yewu/index" class="tp-tool-list text-shadow text-pink" hover-class="none">
+            <text class="cuIcon-kefu lg"></text>
+            <view class="name">业务</view>
+        </navigator>
+        <navigator url="/pages/search/index" class="tp-tool-list text-shadow text-blue" hover-class="none">
+            <text class="cuIcon-discover lg"></text>
+            <view class="name">搜索</view>
+        </navigator>
+        <navigator url="/pages/page/index" class="tp-tool-list text-shadow text-purple" hover-class="none">
+            <text class="cuIcon-about lg"></text>
+            <view class="name">关于</view>
+        </navigator>
+    </view>
+</view>
+
+<!-- 文章推荐
+
+<view class="article-item" s-if="{{hostList.length}}">
+    <view s-for="item, index in hostList" s-key="index" bindtap="detailsBtn" data-id='{{item.ID}}'
+        hover-stay-time="100">
+        <view class="rn-footer">
+            <view class="badge-sticky"></view><text class="title">{{item.Title}}</text>
         </view>
     </view>
 </view>
+-->
 <!-- 文章列表 -->
-<view class="container blog-view">
+<view class="container">
     <view class="article-item" s-for="item, index in conList" s-key="index" bindtap="detailsBtn" data-id='{{item.ID}}'
         hover-stay-time="100">
         <!-- 判断是否为三张图片 -->
