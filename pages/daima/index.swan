@@ -9,9 +9,9 @@
             </view>
             <view class="list-content">
                 <view class="list-body">
-                    <view class="mt-auto p-md-3">
+                    <view class="mt-auto">
                         <view class="text-xl"> {{ title }} </view>
-                        <view class="border-top border-white mt-2 mt-md-3 pt-2 pt-md-3">
+                        <view class="border-top border-white list-pt">
                             <view class="text-sm h-2x">{{ intro }}</view>
                         </view>
                     </view>

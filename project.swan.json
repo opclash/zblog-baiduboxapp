@@ -14,13 +14,13 @@
     },
     "host": "baiduboxapp",
     "preview": {
-        "packageId": 1476540
+        "packageId": 1476757
     },
     "projectname": "彧繎博客",
     "publish": {
         "hideTips": true,
         "tips": [],
-        "version": "1.4.8"
+        "version": "1.5.0"
     },
     "setting": {
         "autoAudits": false,

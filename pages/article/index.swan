@@ -18,13 +18,12 @@
         <view class="d-inline-block" s-for="item, index in result.Tagn" s-key="{{index}}">
             <view class="badge-primary">{{ item }}</view>
         </view>
-        <view class="desc">
+        <view class="desc" selectable="true">
             <mp-html
                 content="{{ content }}"
-                lazy-load='true'
+                lazy-load="true"
                 container-style="white-space:pre-wrap;word-break:break-all"
-                selectable='true'
-                copy-link='false'
+                selectable="true"
             />
         </view>
         <!--<view class="reward-bt">
