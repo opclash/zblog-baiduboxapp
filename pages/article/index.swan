@@ -1,5 +1,5 @@
 <view class="container">
-    <text class="page-title" selectable='true'>{{ result.Title }}</text>
+    <text class="page-title" bindtap="playTTS">{{ result.Title }}</text>
     <view class="article-item article-info">
         <view class="info">
             <view class="content-desp">

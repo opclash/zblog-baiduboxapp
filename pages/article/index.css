@@ -48,41 +48,6 @@
     background-color: #eee;
 }
 
-swan-button[loading="true"]:before {
-    margin-left: 12px;
-}
-
-swan-comment-list .mode-comment, swan-comment-list .mode-no-comment {
-    height: 11.584vw;
-    width: 100%;
-    background-color: #fff;
-    box-sizing: border-box;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    padding-left: 4.102666666666667vw;
-    padding-right: 2.8986666666666663vw;
-    border-top: 0.5px solid #d8d8d8;
-}
-
-swan-comment-list .mode-comment {
-    justify-content: space-between;
-}
-
-swan-comment-list .mode-comment.secure-bottom {
-    height: 21.244000000000003vw;
-    padding-bottom: 9.661333333333333vw;
-}
-
-swan-comment-list .comment-list-toolbar {
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    background-color: #fff;
-    z-index: 999;
-    font-size: 3.865333333333333vw;
-}
-
 .d-inline-block {
     padding-top:20px;
     margin-right: .25rem!important;
@@ -102,6 +67,70 @@ swan-comment-list .comment-list-toolbar {
     vertical-align: baseline;
 }
 
+/** 关注小程序样式 **/
+.content-desp {
+    margin-top: 43.48rpx;
+    margin-right: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.author-detail {
+    order: 1;
+    flex: 1 0 auto;
+    display: flex;
+    margin-right: 30.8rpx;
+}
+
+.author-avator {
+    width: 80rpx;
+    height: 80rpx !important;
+    border-radius: 50%;
+    border: .1rpx solid rgba(0, 0, 0, .2);
+}
+
+.author-other {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 14.49rpx;
+}
+
+.author-name {
+    font-size: 28.99rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color:#999;
+}
+
+.author-v {
+    display: inline-block;
+    background-image: url(../../images/icon/v.svg);
+    background-repeat: no-repeat;
+    background-size: 15px;
+    width: 15px;
+    height: 13px;
+    margin-left: 1.5px;
+}
+
+.publish-date {
+    font-size: 24rpx;
+    color: #999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.follow-btn {
+    order: 2;
+    line-height: 50.72rpx !important;
+    font-size: 23.55rpx !important;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+}
+
 /** 分享 **/
 
 .reward-bt{
@@ -113,7 +142,6 @@ swan-comment-list .comment-list-toolbar {
     margin-top: 24px;
     border:1px solid rgba(0,0,0,.2);
 }
-
 
 swan-follow-swan, swan-follow-swan[type=primary]:after {
     border-radius:30px;

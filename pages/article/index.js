@@ -162,5 +162,24 @@ Page({
                 });
             });
         }
+    },
+    playTTS() {
+        console.log('playTTS');
+        // 低版本开发者工具环境下，可能不支持 TTS 语音播报模拟，请使用百度 APP 打开小程序体验
+        swan.canIUse('playSystemTTS')
+            && swan.playSystemTTS({
+                success() {
+                    console.log('play TTS success!');
+                },
+                fail(reason) {
+                    console.log('play TTS fail!');
+                    // 并非所有的错误回调都提供了返回参数
+                    reason && console.log(reason);
+                },
+                complete() {
+                    console.log('play TTS complete!');
+                }
+            });
     }
+
 });
