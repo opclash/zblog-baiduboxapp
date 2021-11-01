@@ -21,14 +21,20 @@ Page({
         swan.request({
             // 数据接口，需改为开发者实际的请求接口
             url: 'https://opssh.cn/zb_system/api.php?mod=post&act=list&sortby=ID&order=desc',
+
             header: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                ' Cache-Control': 'max-age=43200'
             },
             data: {
                 // 参数中需携带页码参数，此为示例，可根据实际情况传入其他所需参数
                 page: currentPage
             },
 
+            // 开启云加速服务
+            cloudCache: true,
+            // 控制当前请求是否延时至首屏内容渲染后发送
+            defer: true,
             success: res => {
 
                 if (res.statusCode === 200) {
