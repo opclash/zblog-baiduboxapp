@@ -13,7 +13,9 @@ App({
             this.globalData.networkType = res.networkType;
         });
     },
-
+    onPrefetch({query, scene, trigger}) {
+        console.log('page index prefetch', query, scene, trigger);
+    },
     globalData: {
         openParams: 'docWeb',
         setting: null

@@ -13,8 +13,8 @@
                         <view class="text-xl" s-for="item in followData">
                             关于博客 <follow-swan style='float:right' size="default" type="{{ item.type }}" bindfavorstatuschange="statuschange" />
                         </view>
-                        <view class="border-top border-white mt-2 mt-md-3 pt-2 pt-md-3">
-                            <view class="text-sm h-2x">彧繎博客（opssh.cn）创建于 2021年5月20日，博主：拿铁叔叔，九零后技术宅，前端狂魔</view>
+                        <view class="border-top border-white list-pt">
+                            <view class="text-sm h-2x">彧繎博客（opssh.cn）创建于 2021年5月20日，一直在寻找一份属于我的宁静，那便是一个简单的技术博客，一片属于我的心灵净土。</view>
                         </view>
                     </view>
                 </view>

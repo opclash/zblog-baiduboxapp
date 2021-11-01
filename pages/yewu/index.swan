@@ -13,7 +13,7 @@
                         <view class="text-xl" s-for="item in followData">
                             业务介绍 <button type="button" style='float:right' class='kefu' open-type="contact">客服</button>
                         </view>
-                        <view class="border-top border-white mt-2 mt-md-3 pt-2 pt-md-3">
+                        <view class="border-top border-white list-pt">
                             <view class="text-sm h-2x">从事网站建设、小程序开发，制作企业网站与小程序应用系统开发，提供个人、企业网站建设的外包托管，全球购海外推广等业务！</view>
                         </view>
                     </view>
