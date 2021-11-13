@@ -125,9 +125,7 @@ Page({
                 title: res.result.Name + ' - ' + res.result.Title,
                 keywords: res.result.Keywords,
                 description: res.result.Description,
-                articleTitle: res.result.Title,
-                releaseDate: res.result.Time,
-                image: res.result.Logo
+                articleTitle: res.result.Title
             });
         })
     },

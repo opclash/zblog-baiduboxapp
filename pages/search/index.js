@@ -51,9 +51,7 @@ Page({
                 title: '在线搜索 - 彧繎博客',
                 keywords: '',
                 description: '',
-                articleTitle: '在线搜索',
-                releaseDate: '2021-09-09 20:52:04',
-                image: 'https://opssh.cn/logo.png'
+                articleTitle: '在线搜索'
             });
         })
     },

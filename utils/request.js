@@ -12,7 +12,7 @@ try {
 
 var header = {
     'content-type': 'application/x-www-form-urlencoded',
-    'Cache-Control': 'max-age=21600',
+    // 'Cache-Control': 'max-age=21600',
     'Authorization': 'Bearer ' + token,
     'access-control-allow-origin': '*'
 };
@@ -41,7 +41,7 @@ function request(url, params, method, resolve, reject) {
         // 請求頭
         // 开启云加速服务(方式一)
         // 关闭：false，开启：true
-        cloudCache: true,
+        cloudCache: false,
         // 开启云加速服务，并且不以 timestamp 字段作为缓存依据（方式二）
         // cloudCache: {
         //     excludeURLQueries: ['timestamp']

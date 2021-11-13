@@ -100,9 +100,7 @@ Page({
                 title: res.result.cate.Name + ' - ' + res.result.Name,
                 keywords: res.result.cate.flgjc,
                 description: res.result.cate.Intro,
-                articleTitle: res.result.cate.Name,
-                releaseDate: res.result.cate.Time,
-                image: res.result.Logo
+                articleTitle: res.result.cate.Name
             })
         })
     },

@@ -40,7 +40,7 @@
     </view>
 </view>
 
-<!-- 文章推荐
+<!-- 文章推荐 -->
 <view class="article-item" s-if="{{hostList.length}}">
     <view s-for="item, index in hostList" s-key="index" bindtap="detailsBtn" data-id='{{item.ID}}'
         hover-stay-time="100">
@@ -49,7 +49,6 @@
         </view>
     </view>
 </view>
--->
 <!-- 文章列表 -->
 <view class="container">
     <view class="article-item" s-for="item, index in conList" s-key="index" bindtap="detailsBtn" data-id='{{item.ID}}'
