@@ -20,6 +20,10 @@ Zblog 1.7.1 百度小程序源码
 <li>依赖Z-Blog 1.7.1 的API接口，无需任何插件</li>
 <li>打开后台->网站设置->API设置，打开 启用API协议开关 并提交即可</li>
 
+<h2>使用说明</h2>
+<li>修改 config.js 内的 域名</li>
+<li>修改 project.swan.json 内的 appid</li>
+
 <h2>演示看这里</h2>
 <p align="center">
 <img src="https://oss.opssh.cn/zb_users/upload/2021/11/202111212401_814.png">
