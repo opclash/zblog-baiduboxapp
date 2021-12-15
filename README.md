@@ -15,6 +15,7 @@ Zblog 1.7.1 百度小程序源码，采用 Zblog 1.7.1 原生API协议，为 Z-B
 </p>
 
 <h2>小程序特色</h2>
+<li>移除 os_wxapp_one 小程序插件</li>
 <li>使用 Zblog 1.7.1 原生API接口</li>
 <li>小程序集成 swan-sitemap 索引页</li>
 <li>文章页集成 swan.setPageInfo </li>
