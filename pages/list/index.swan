@@ -1,15 +1,5 @@
-<!--index.wxml-->
-<!-- 轮播图 -->
-<view class="swiper-box">
-    <image src="../../images/icon/xiu.png" class="slide-image" mode="widthFix" bindload='imgHeight' lazy-load='true' />
-</view>
-
-
-<!-- 文章推荐 -->
 <view class="container">
-    <!-- 文章列表 -->
-    <view s-for="item, index in conList" s-key="index" bindtap="detailsBtn" data-id='{{item.ID}}' hover-stay-time="100">
-
+    <view s-for="item, index in navList" s-key="{{index}}" bindtap="detailsBtn" data-id='{{item.ID}}' isCustom="{{true}}" hover-stay-time="100">
         <view class="wutu">
             <view class="list-content p-0">
                 <view class="list-body">
@@ -27,8 +17,7 @@
                 </view>
             </view>
         </view>
-
     </view>
-
     <view class="read-more cu-load {{!state?'loading':'over'}}"></view>
 </view>
+<!-- 底部加载 -->

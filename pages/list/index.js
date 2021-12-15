@@ -1,5 +1,5 @@
 // 列表
-import { getNavList } from '../../utils/request.js';
+import utils from '../../utils/request.js';
 import { toDate, formatMsgTime } from '../../utils/tool.js';
 
 const app = getApp();
@@ -9,42 +9,41 @@ Page({
      * 页面的初始数据
      */
     data: {
-        state: true,
+        state: false,
+        // 无限加载没数据状态
         id: '',
         title: '',
         intro: '',
-        page: '1',
+        page: 1,
         navList: []
     },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.data.id = options.id;
-        // 接收id
+        this.data.id = options.id; // 接收id
         this.getNavList();
     },
 
     getNavList() {
         var _then = this;
-
-        getNavList({
-            'cateid': 2,
+        utils.getNavList({
+            'cate_id': this.data.id,
             'page': _then.data.page
         }).then(res => {
-            var datas = res.result.list;
+            var datas = res.data.list;
 
-            for (var i = 0; i < datas.length; i++) {
-                datas[i]["PostTime"] = formatMsgTime(Number(datas[i]["PostTime"]) * 1000, 1);
-            }
+            const datacc = datas.map(item => {
+                item.PostTime = formatMsgTime(Number(item.PostTime) * 1000, 1);
+                return item;
+            });
 
             _then.setData({
-                title: res.result.cate.Name,
-                intro: res.result.cate.Intro,
                 navList: _then.data.navList.concat(datas)
             });
 
-            if (res.result.pages <= _then.data.page) {
+            if (res.data.pagebar.PageAll <= _then.data.page) {
                 _then.setData({
                     state: true
                 });
@@ -61,50 +60,32 @@ Page({
         });
     },
 
-    // 刷新
-    refresh() {
-        let _then = this;
-        _then.setData({
-            state: true,
-            id: '',
-            title: '',
-            intro: '',
-            page: '1',
-            navList: []
-        });
-
-        _then.getNavList();
-        //隐藏导航条加载动画
-        swan.hideNavigationBarLoading();
-        //停止下拉刷新
-        swan.stopPullDownRefresh();
-    },
-
-
     // 无限滚动翻页
     turnPage() {
         let _then = this;
         _then.data.page = Number(_then.data.page) + 1;
         _then.getNavList();
     },
+
     /**
-     * 生命周期函数--监听页面显示
-     */
+    * 生命周期函数--监听页面显示
+    */
     onShow: function () {
         var _then = this;
-        getNavList({
-            'cateid': 2
+        utils.getcategory({
+            'id': this.data.id,
         }).then(res => {
-            swan.setNavigationBarTitle({ title: res.result.cate.Name });
+            swan.setNavigationBarTitle({ title: res.data.category.Name });
             swan.setPageInfo({
-                title: res.result.cate.Name + ' - ' + res.result.Name,
-                keywords: res.result.cate.flgjc,
-                description: res.result.cate.Intro,
-                articleTitle: res.result.cate.Name
-            })
+                title: res.data.category.Name,
+                keywords: res.data.category.Name,
+                description: res.data.category.Intro,
+                articleTitle: res.data.category.Name,
+                releaseDate: null,
+                image: null
+            });
         })
     },
-
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */

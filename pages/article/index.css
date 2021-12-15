@@ -1,11 +1,4 @@
 /* pages/article/index.wxss */
-.page-title {
-    padding: 30rpx 30rpx;
-    font-size: 46rpx;
-    line-height: 1.5;
-    border-bottom: 1rpx solid #f0f0f0;
-}
-
 .p {
     margin-top: 15px;
     width: 100%;
@@ -17,14 +10,8 @@
     padding: 20rpx 30rpx;
 }
 
-.article-info {
-    border-bottom: none;
-    padding-top: 10rpx;
-}
-
-.article-info .desc {
-    font-size: 30rpx;
-    text-align: justify;
+.h2 {
+    border-bottom: 1px solid #dfe2ef;
 }
 
 .info {
@@ -42,29 +29,6 @@
 .rich-img {
     max-width: 100% !important;
     height: auto !important;
-}
-
-.prism-highlight {
-    background-color: #eee;
-}
-
-.d-inline-block {
-    padding-top:20px;
-    margin-right: .25rem!important;
-    display: inline-block!important;
-}
-
-.badge-primary {
-    color: #fff;
-    background-color: #448EF6;
-    border-radius: 2px;
-    font-weight: 400;
-    padding: .25em .3em;
-    font-size: 75%;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
 }
 
 /** 关注小程序样式 **/
@@ -129,18 +93,6 @@
     white-space: nowrap;
     padding: 0;
     margin: 0;
-}
-
-/** 分享 **/
-
-.reward-bt{
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    text-align: center;
-    margin: auto;
-    margin-top: 24px;
-    border:1px solid rgba(0,0,0,.2);
 }
 
 swan-follow-swan, swan-follow-swan[type=primary]:after {

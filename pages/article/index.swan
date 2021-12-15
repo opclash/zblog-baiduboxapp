@@ -1,47 +1,50 @@
-<view class="container">
-    <text class="page-title" bindtap="playTTS">{{ result.Title }}</text>
-    <view class="article-item article-info">
-        <view class="info">
-            <view class="content-desp">
-                <view class="author-detail">
-                    <image class="author-avator" mode="widthFix" src="{{ result.Author.Avatar }}" bindtap="oneTap"></image>
-                    <view class="author-other">
-                        <view class="author-name" bindtap="oneTap">{{ result.Author.Nickname }}<view class="author-v"></view></view>
-                        <view class="publish-date">阅读：{{ result.ViewNums }} 丨 发布：{{ result.PostTime }}</view>
-                    </view>
+<view class="post-center">
+    <view class="post-header">
+        <view class="mb-3" selectable='true'>
+            {{ result.Title }}
+            <view s-if="{{sty==0}}" catchtap='score' style="display:inline-block;">
+                <view bindtap="playTTS">
+                    <image class="post-on" src="../../images/icon/erji.png" />
                 </view>
-                <view class="follow-btn" s-for="item in followData">
-                    <follow-swan size="default" type="{{ item.type }}" bindfavorstatuschange="statuschange" />
+            </view>
+            <view s-if="{{sty==1}}" style="display:inline-block;">
+                <view>
+                    <image class="post-on" src="../../images/icon/erji_fill.png" />
                 </view>
             </view>
         </view>
-        <view class="d-inline-block" s-for="item, index in result.Tagn" s-key="{{index}}">
-            <view class="badge-primary">{{ item }}</view>
-        </view>
-        <view class="desc" selectable="true">
-            <mp-html
-                content="{{ content }}"
-                lazy-load="true"
-                container-style="white-space:pre-wrap;word-break:break-all"
-                selectable="true"
-            />
-        </view>
-        <!--<view class="reward-bt">
-            <smt-like class="smt-like" like-type="0" like-param="{{likeParam}}" need-like-btn="{{true}}"></smt-like>
-        </view>-->
     </view>
-
-    <text class="page-title" s-if="{{ result.RelatedList.length > 0 }}">相关阅读</text>
-    <view class="container blog-view">
-        <view class="article-item" s-for="item, index in result.RelatedList" s-key="{{ index }}" bindtap="detailsBtn"
-            data-id='{{ item.ID }}' style="border-bottom:0px solid #eee;">
-            <text class="title">{{ item.Title }}</text>
-            <text class="intro">{{ item.zaiyao }}</text>
+    <view class="info">
+        <view class="content-desp">
+            <view class="author-detail">
+                <image class="author-avator" mode="widthFix" src="https://opssh.cn/zb_users/avatar/0.png"></image>
+                <view class="author-other">
+                    <view class="author-name">彧繎叔叔. <view class="author-v"></view>
+                    </view>
+                    <view class="publish-date">阅读：{{ result.ViewNums }} 丨 发布：{{ result.PostTime }}</view>
+                </view>
+            </view>
+            <view class="follow-btn" s-for="item in followData">
+                <follow-swan size="default" type="{{ item.type }}" bindfavorstatuschange="statuschange" />
+            </view>
         </view>
     </view>
+    <view class="post-content">
+        <mp-html content="{{ result.Content }}" lazy-load="true"
+            container-style="white-space:pre-wrap;word-break:break-all" selectable="true" />
+    </view>
+</view>
 
-    <text class="page-title">吐槽列表</text>
-    <comment-list class="list"  comment-param="{{ commentParam }}" detail-path="{{ detailPath }}"
-        toolbar-config="{{ toolbarConfig }}" bindclickcomment="clickComment">
-    </comment-list>
+<view class="post-center" style="margin-top:12px;" s-if="{{ result.RelatedList.length > 0 }}">
+<view class="mb-md-4">相关阅读</view>
+    <view class="post-li" s-for="item, index in result.RelatedList" s-key="{{ index }}" bindtap="detailsBtn" data-id='{{ item.id }}'>
+        <view class="post-hx">{{ item.title }}</view>
+    </view>
+</view>
+
+<view class="post-comment" style="margin-top:12px;">
+<view class="mb-md-4" style="padding:0.75rem;">吐槽列表</view>
+<comment-list comment-param="{{ commentParam }}" detail-path="{{ detailPath }}"
+    toolbar-config="{{ toolbarConfig }}" bindclickcomment="clickComment">
+</comment-list>
 </view>

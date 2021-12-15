@@ -2,23 +2,27 @@
 <view class="search-header">
     <view class="search-bar" bindtap="searchBtn">
         <text class="cuIcon-search"></text>
-
-        <input type="text" placeholder="填写相关内容关键词" value="{{keyword}}" confirm-type="search" focus="{{!keyword.length}}" bindconfirm="searchSubmit" class="search-input" />
-
+        <input type="text" placeholder="填写相关内容关键词" value="{{keyword}}" confirm-type="search" focus="{{!keyword.length}}"
+            bindconfirm="searchSubmit" class="search-input" />
         <image bindtap="searchSubmit" class="search-icon" src="../../images/icon/search-icon.svg" mode="aspectFill" />
-
     </view>
 </view>
-
 <view style="text-align: center;" s-if="{{!keyword.length}}">
-  <image src=""></image>
-  <view style="color: #636363;">未搜索到文章</view>
+    <image src=""></image>
+    <view style="color: #636363;">请输入相关关键词</view>
 </view>
-
 <!-- 列表 -->
-<view class="container blog-view" s-if="{{keyword}}">
-    <view class="article-item" s-for="item, index in conList.result.list" s-key="{{index}}" bindtap="detailsBtn" data-id='{{item.ID}}'>
-        <text class="title">{{item.Title}}</text>
-        <text class="intro">{{item.zaiyao}}</text>
+<view class="container" s-if="{{keyword}}">
+    <view s-for="item, index in conList.data.list" s-key="{{index}}" bindtap="detailsBtn" data-id='{{item.ID}}'>
+        <view class="wutu">
+            <view class="list-content p-0">
+                <view class="list-body">
+                    {{item.Title}}
+                </view>
+                <view class="list-desc">
+                    <rich-text nodes="{{item.Intro}}" class="h-2x " type="text"></rich-text>
+                </view>
+            </view>
+        </view>
     </view>
 </view>

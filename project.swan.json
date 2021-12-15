@@ -1,5 +1,5 @@
 {
-    "appid": "14857638",
+    "appid": "你的ID",
     "compilation-args": {
         "common": {
             "babelSetting": {
@@ -14,22 +14,22 @@
     },
     "host": "baiduboxapp",
     "preview": {
-        "packageId": 1481288
+        "packageId": 1482307
     },
     "projectname": "彧繎博客",
     "publish": {
         "hideTips": true,
         "tips": [],
-        "version": "1.5.9"
+        "version": "1.0.2"
     },
     "setting": {
         "autoAudits": false,
         "enableScripts": false,
-        "urlCheck": false
+        "urlCheck": true
     },
     "swan": {
         "baiduboxapp": {
-            "swanJsVersion": "3.340.31",
+            "swanJsVersion": "3.380.2",
             "extensionJsVersion": "1.21.2"
         }
     }

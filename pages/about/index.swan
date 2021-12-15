@@ -1,0 +1,5 @@
+<view class="post-center">
+    <view class="post-content">
+        <rich-text nodes="{{data.Content}}" image-menu-prevent="true"></rich-text>
+    </view>
+</view>

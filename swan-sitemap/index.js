@@ -1,4 +1,6 @@
 import { toDate } from '../utils/tool.js';
+import utils from '../utils/request.js';
+
 Page({
     data: {
         listData: [],
@@ -19,7 +21,7 @@ Page({
         // 发起数据资源请求。
         swan.request({
             // 数据接口，需改为开发者实际的请求接口
-            url: 'https://opssh.cn/zb_system/api.php?mod=post&act=list&sortby=ID&order=desc',
+            url: utils.sitemap,
 
             header: {
                 'content-type': 'application/json'
@@ -60,14 +62,5 @@ Page({
                 }
             }
         });
-    },
-
-    onShow: function () {
-        swan.setPageInfo({
-            title: '索引页',
-            keywords: '索引页',
-            description: '自动同步指通过索引页的方式让开发者通过一次开发和提交，将小程序资源提交给百度。索引页即一个小程序页面，页面内容为站点所有资源链接列表，每个链接指向一个对应的资源小程序页。',
-            articleTitle: '索引页'
-        })
     }
 });

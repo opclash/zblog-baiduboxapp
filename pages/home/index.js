@@ -1,44 +1,12 @@
 // 首页
 const app = getApp();
-
-import { getHome } from '../../utils/request.js';
-
+import utils from '../../utils/request.js';
 import { toDate, formatMsgTime } from '../../utils/tool.js';
-
 Page({
     data: {
-        swiper: [],
-        // 轮播图
         conList: [],
-        // 文章列表
-        hostList: [],
-        // 熱門文章列表
         page: 1,
-        // 頁數
-        state: false,
-        // 无限加载没数据状态
-        swiperCurrent: "",
-        //轮播图圆点
-        swiperH: ""
-        //这是swiper框要动态设置的高度属性
-    },
-
-    swiperChange: function (e) {
-        this.setData({
-            swiperCurrent: e.detail.current
-            //获取当前轮播图片的下标
-        })
-    },
-
-    imgHeight: function (e) {
-        var winWid = swan.getSystemInfoSync().screenWidth;
-        var imgh = e.detail.height;//图片高度
-        var imgw = e.detail.width;//图片宽度
-        var swiperH = winWid * imgh / imgw + "px";
-        //等比设置swiper的高度。 即 屏幕宽度 / swiper高度 = 图片宽度 / 图片高度  ==》swiper高度 = 屏幕宽度 * 图片高度 / 图片宽度
-        this.setData({
-            swiperH: swiperH//设置高度
-        });
+        state: false
     },
 
     /**
@@ -51,36 +19,27 @@ Page({
     getHome() {
         var _then = this;
         // 获取首頁接口
-        getHome({
+        utils.getHome({
             page: _then.data.page
         }).then(res => {
-            let swiperList = [];
-            var datas = res.result.list;
-            for (var i = 0; i < datas.length; i++) {
-                //用for循环把所有的时间戳都转换程时间格式
-                datas[i]["PostTime"] = formatMsgTime(Number(datas[i]["PostTime"]) * 1000, 1);
-            }
-
-            for (let i = 0; i < res.result.swiper; i++) {
-                if (res.result.swiper[i].Type == 'article') {
-                    swiperList.push(res.result.swiper[i]);
-                }
-            }
+            var datas = res.data.list;
+            const datacc = datas.map(item => {
+                item.PostTime = formatMsgTime(Number(item.PostTime) * 1000, 1);
+                return item;
+            });
 
             _then.setData({
-                swiper: res.result.swiper,
-                hostList: res.result.medias,
+                hostList: null,
                 conList: _then.data.conList.concat(datas)
             });
 
-            if (res.result.pages <= _then.data.page) {
+            if (res.data.pagebar.PageAll <= _then.data.page) {
                 _then.setData({
                     state: true
                 });
             }
         });
     },
-
     // 刷新
     refresh() {
         let _then = this;
@@ -116,17 +75,14 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        var _then = this;
-        getHome({
-            page: _then.data.page
-        }).then(res => {
-            swan.setNavigationBarTitle({ title: res.result.Name });
-            swan.setPageInfo({
-                title: res.result.Name + ' - ' + res.result.Title,
-                keywords: res.result.Keywords,
-                description: res.result.Description,
-                articleTitle: res.result.Title
-            });
+        swan.setNavigationBarTitle({
+            title: "彧繎博客"
+        });
+        swan.setPageInfo({
+            title: "彧繎博客 - 路由器刷机与网络资源分享",
+            keywords: "路由器刷机,路由器固件,软路由刷机,软路由固件,路由固件刷写,开源代码分享",
+            description: "路由网致力于路由器刷机，软路由固件刷写，OpenWrt插件安装，以及OpenWrt固件编译和开源代码分享，通过分享互联网知识让更多数码爱好者从中受益，与数码爱好者用代码改变未来!",
+            articleTitle: "彧繎博客 - 路由器刷机与网络资源分享"
         })
     },
 
