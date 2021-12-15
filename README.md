@@ -4,7 +4,14 @@ Zblog 1.7.1 百度小程序源码
 <img src="https://oss.opssh.cn/zb_users/upload/2021/07/202107041625356566325110.png">
 </p>
 <h2>反馈中心地址</h2>
+<li>肠胃炎犯了，更新有点慢</li>
+<li>遇到问题可以留言，有说明想法也可以留言，尽量更新</li>
 <li>https://opssh.cn/fenxiang/35.html</li>
+
+<h2>演示看这里</h2>
+<p align="center">
+<img src="https://oss.opssh.cn/zb_users/upload/2021/11/202111212401_814.png">
+</p>
 
 <h2>小程序特色</h2>
 <li>使用 Zblog 1.7.1 原生API接口</li>
@@ -23,8 +30,3 @@ Zblog 1.7.1 百度小程序源码
 <h2>使用说明</h2>
 <li>修改 config.js 内的 域名</li>
 <li>修改 project.swan.json 内的 appid</li>
-
-<h2>演示看这里</h2>
-<p align="center">
-<img src="https://oss.opssh.cn/zb_users/upload/2021/11/202111212401_814.png">
-</p>
