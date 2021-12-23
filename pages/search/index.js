@@ -1,7 +1,7 @@
 Page({
     data: {
         pageTitle: '内容搜索',
-        appkey: 'U1K9cxiyxwimErUWfOo06sBsvER6f5dP',
+        appkey: '你自己的appkey',
         searchBoxConf: {
             placeholder: '请填写搜索词',
             needVoice: false
