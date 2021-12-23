@@ -1,6 +1,5 @@
 // 列表
 import utils from '../../utils/request.js';
-import { toDate, formatMsgTime } from '../../utils/tool.js';
 
 const app = getApp();
 
@@ -10,41 +9,47 @@ Page({
      */
     data: {
         state: false,
-        // 无限加载没数据状态
         id: '',
-        title: '',
-        intro: '',
-        page: 1,
+        page: '1',
         navList: []
     },
 
+    onInit: function (options) {
+		if (!this.hasRequest) {
+			this.hasRequest = true;
+            this.data.id = options.id; // 接收id
+            this.getNavList();
+		}
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.data.id = options.id; // 接收id
-        this.getNavList();
+        if (!this.hasRequest) {
+			this.hasRequest = true;
+            this.data.id = options.id; // 接收id
+            this.getNavList();
+		}
     },
 
     getNavList() {
-        var _then = this;
         utils.getNavList({
             'cate_id': this.data.id,
-            'page': _then.data.page
+            'page': this.data.page
         }).then(res => {
             var datas = res.data.list;
 
             const datacc = datas.map(item => {
-                item.PostTime = formatMsgTime(Number(item.PostTime) * 1000, 1);
+                item.PostTime = utils.formatMsgTime(Number(item.PostTime) * 1000, 1);
                 return item;
             });
 
-            _then.setData({
-                navList: _then.data.navList.concat(datas)
+            this.setData({
+                navList: this.data.navList.concat(datas)
             });
 
-            if (res.data.pagebar.PageAll <= _then.data.page) {
-                _then.setData({
+            if (res.data.pagebar.PageAll <= this.data.page) {
+                this.setData({
                     state: true
                 });
             }
@@ -62,22 +67,20 @@ Page({
 
     // 无限滚动翻页
     turnPage() {
-        let _then = this;
-        _then.data.page = Number(_then.data.page) + 1;
-        _then.getNavList();
+        this.data.page = Number(this.data.page) + 1;
+        this.getNavList();
     },
 
     /**
     * 生命周期函数--监听页面显示
     */
     onShow: function () {
-        var _then = this;
-        utils.getcategory({
+        utils.getCategory({
             'id': this.data.id,
         }).then(res => {
             swan.setNavigationBarTitle({ title: res.data.category.Name });
             swan.setPageInfo({
-                title: res.data.category.Name,
+                title: res.data.category.Name + ' - 彧繎博客',
                 keywords: res.data.category.Name,
                 description: res.data.category.Intro,
                 articleTitle: res.data.category.Name,
@@ -86,6 +89,7 @@ Page({
             });
         })
     },
+
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */

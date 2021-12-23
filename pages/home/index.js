@@ -1,100 +1,119 @@
 // 首页
 const app = getApp();
 import utils from '../../utils/request.js';
-import { toDate, formatMsgTime } from '../../utils/tool.js';
 Page({
     data: {
+        swiper: [],
         conList: [],
+        hostList: [],
         page: 1,
-        state: false
+        state: false,
+        navShow: false,
+        swiperCurrent: "",
+        //轮播图圆点
+        swiperH: "265",
+        //这是swiper框要动态设置的高度属性
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-        this.getHome();
+    swiperChange: function (e) {
+        this.setData({
+            swiperCurrent: e.detail.current
+            //获取当前轮播图片的下标
+        })
     },
-
+    imgHeight: function (e) {
+        var winWid = swan.getSystemInfoSync().screenWidth;
+        var imgh = e.detail.height; //图片高度
+        var imgw = e.detail.width; //图片宽度
+        var swiperH = winWid * imgh / imgw + "px";
+        //等比设置swiper的高度。 即 屏幕宽度 / swiper高度 = 图片宽度 / 图片高度  ==》swiper高度 = 屏幕宽度 * 图片高度 / 图片宽度
+        this.setData({
+            swiperH: swiperH //设置高度
+        });
+    },
+    onInit() {
+		if (!this.hasRequest) {
+			this.hasRequest = true;
+            this.getHome();
+		}
+	},
+    onLoad() {
+        if (!this.hasRequest) {
+			this.hasRequest = true;
+            this.getHome();
+		}
+    },
     getHome() {
-        var _then = this;
-        // 获取首頁接口
+
         utils.getHome({
-            page: _then.data.page
+            page: this.data.page
         }).then(res => {
             var datas = res.data.list;
             const datacc = datas.map(item => {
-                item.PostTime = formatMsgTime(Number(item.PostTime) * 1000, 1);
+                item.PostTime = utils.formatMsgTime(Number(item.PostTime) * 1000, 1);
                 return item;
             });
-
-            _then.setData({
-                hostList: null,
-                conList: _then.data.conList.concat(datas)
+            this.setData({
+                conList: this.data.conList.concat(datas)
             });
-
-            if (res.data.pagebar.PageAll <= _then.data.page) {
-                _then.setData({
+            var info = {
+                conList: this.data.conList.concat(datas)
+            }
+            swan.setStorage({
+                key: "zblog-cache",
+                data: info
+            });
+            if (res.data.pagebar.PageAll <= this.data.page) {
+                this.setData({
                     state: true
                 });
             }
         });
     },
-    // 刷新
     refresh() {
-        let _then = this;
-        _then.setData({
+        this.setData({
             state: false,
             conList: [],
-            // 文章列表
-            page: '1' // 頁數
+            page: '1'
         });
-        _then.getHome();
-        //隐藏导航条加载动画
+        this.getHome();
         swan.hideNavigationBarLoading();
-        //停止下拉刷新
         swan.stopPullDownRefresh();
     },
-
-    // 无限滚动翻页
     turnPage() {
-        let _then = this;
-        _then.data.page = Number(_then.data.page) + 1;
-        _then.getHome();
+        this.data.page = Number(this.data.page) + 1;
+        this.getHome();
     },
-
-    // 跳转内容页
     detailsBtn(e) {
         let id = e.currentTarget.dataset.id;
         swan.navigateTo({
             url: '/pages/article/index?id=' + id
         });
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
     onShow: function () {
-        swan.setNavigationBarTitle({
-            title: "彧繎博客"
-        });
-        swan.setPageInfo({
-            title: "彧繎博客 - 路由器刷机与网络资源分享",
-            keywords: "路由器刷机,路由器固件,软路由刷机,软路由固件,路由固件刷写,开源代码分享",
-            description: "路由网致力于路由器刷机，软路由固件刷写，OpenWrt插件安装，以及OpenWrt固件编译和开源代码分享，通过分享互联网知识让更多数码爱好者从中受益，与数码爱好者用代码改变未来!",
-            articleTitle: "彧繎博客 - 路由器刷机与网络资源分享"
+        utils.getSettings({
+        }).then(res => {
+            this.setData({
+                swiper: res.data.swiper,
+                toolnav: res.data.toolnav,
+                navimg: res.data.info.navimg,
+                contacton: res.data.info.contacton,
+                onask: res.data.info.onask
+            });
+            swan.setNavigationBarTitle({
+                title: res.data.info.name
+            });
+            swan.setPageInfo({
+                title: res.data.info.title,
+                keywords: res.data.info.keywords,
+                description: res.data.info.description,
+                articleTitle: res.data.info.title
+            });
         })
     },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
     onPullDownRefresh: function () {
         this.refresh(1);
     },
-    /**
-     * 页面上拉触底事件的处理函数
-     */
     onReachBottom: function () {
         this.turnPage();
     }

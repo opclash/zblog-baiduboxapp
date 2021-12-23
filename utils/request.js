@@ -1,38 +1,58 @@
-// 引入接口
-import urls from './http'; // 默認请求头（可自行添加token等）
-
-var header = {
-    'Cache-Control': 'no-cache',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Cache-Control': 'nax-age=43200',
-};
+import urls from './http';
 
 //zbp原生
-function requestapi(url, params, method, resolve, reject) {
+function requestapi(url, params, method, resolve, reject,args = { token: false}) {
     swan.showLoading({
         title: "内容加载中...",
         mask: true
     });
+
+    if (args.token) {
+        var token = '';
+        try {
+            token = swan.getStorageSync('token')
+        } catch (e) {
+        }
+        var headers={
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer ' + token,
+        };
+        var cloudCache = false;
+    }else{
+        var headers={
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Cache-Control': 'nax-age=43200',
+        };
+        var cloudCache = urls.cloudCache;
+    }
+
     swan.request({
         url: url,
-        // 接口地址
         data: dealParams(params),
-        // 請求參數
         method: method,
-        // 請求方式
-        header: header,
-        // 开启云加速服务
-        cloudCache: urls.cloudCache,
-        // 請求頭
+        header: headers,
+        cloudCache: cloudCache,
         defer: false,
-        // true 即表示这是一个低优先级请求，可以接受延时执行; false 或不携带此参数，均为正常优先级，即时发送。
         success: res => {
-            swan.hideLoading(); // 關閉加載提示
+            swan.hideLoading();
             var data = res.data
             if (res.data) {
-                // 判斷請求成功的狀態碼
                 if (res.data.code == 200) {
                     resolve(res.data);
+                } else if (data.code === 419) {
+                    swan.navigateTo({
+                        url: '/pages/login/index'
+                    });
+                } else if (data.code === 201) {
+                    swan.setStorageSync('login', 1);
+                    swan.setStorageSync('token', data.data.token);
+                    swan.setStorageSync('user', data.data.user);
+                    swan.switchTab({
+                        url: '/pages/home/index',
+                        success: res => {}
+                    });
                 } else {
                     reject(res.data);
                 }
@@ -50,25 +70,78 @@ function requestapi(url, params, method, resolve, reject) {
  */
 
 function dealParams(params) {
-    return params = Object.assign({}, params, { // id: '666',
+    return params = Object.assign({}, params, {
     });
 }
 
 const apiService = {
     REQUESTZBPGET(url, params) {
+        var args = { token: false }
         return new Promise((resolve, reject) => {
-            requestapi(url, params, "GET", resolve, reject);
+            requestapi(url, params, "GET", resolve, reject,args);
         });
     },
 
     REQUESTZBPPOST(url, params) {
+        var args = { token: true }
         return new Promise((resolve, reject) => {
-            requestapi(url, params, "POST", resolve, reject);
+            requestapi(url, params, "POST", resolve, reject,args);
         });
     }
 };
 
+
+function formatMsgTime(number) {
+    var dateTime = new Date(number);
+    var Y = dateTime.getFullYear();
+    var M = dateTime.getMonth() + 1;
+    var D = dateTime.getDate();
+    var h = dateTime.getHours();
+    var m = dateTime.getMinutes();
+    var millisecond = dateTime.getTime();
+    var now = new Date();
+    var nowNew = now.getTime();
+    var milliseconds = 0;
+    var numberStr;
+    milliseconds = nowNew - millisecond;
+    if (milliseconds <= 1000 * 60 * 1) {
+      numberStr = '刚刚';
+    } else if (1000 * 60 * 1 < milliseconds && milliseconds <= 1000 * 60 * 60) {
+      numberStr = Math.round(milliseconds / (1000 * 60)) + '分钟前';
+    } else if (1000 * 60 * 60 * 1 < milliseconds && milliseconds <= 1000 * 60 * 60 * 24) {
+      numberStr = Math.round(milliseconds / (1000 * 60 * 60)) + '小时前';
+    } else if (1000 * 60 * 60 * 24 < milliseconds && milliseconds <= 1000 * 60 * 60 * 24 * 15) {
+      numberStr = Math.round(milliseconds / (1000 * 60 * 60 * 24)) + '天前';
+    } else if (milliseconds > 1000 * 60 * 60 * 24 * 15 && Y === now.getFullYear()) {
+      numberStr = M + '月' + D + '日' + ' ' + h + ':' + m;
+    } else {
+      numberStr = Y + '年' + M + '月' + D + '日' + ' ' + h + ':' + m;
+    }
+    return numberStr;
+  }
+
+function toDate(number, type) {
+    var date = new Date(number);
+    var Y = date.getFullYear();
+    var M = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    var h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    var m = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    var s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+    if (type == '1') {
+      return Y + '-' + M + '-' + D + ' ' + h + ':' + m + ':' + s;
+    } else if (type == '2') {
+      return Y + '-' + M + '-' + D;
+    }
+}
+
+
 module.exports = {
+    getSettings: params => {
+        return new Promise((resolve, reject) => {
+            resolve(apiService.REQUESTZBPGET(urls.settings));
+        });
+    },
     getHome: params => {
         return new Promise((resolve, reject) => {
             resolve(apiService.REQUESTZBPGET(urls.home, params));
@@ -89,20 +162,52 @@ module.exports = {
             resolve(apiService.REQUESTZBPGET(urls.home, params));
         });
     },
-    getsortslist: params => {
+    getSortsList: params => {
         return new Promise((resolve, reject) => {
             resolve(apiService.REQUESTZBPGET(urls.sortslist, params));
         });
     },
-    getarticleinfo: params => {
+    getArticleInfo: params => {
         return new Promise((resolve, reject) => {
             resolve(apiService.REQUESTZBPGET(urls.articleinfo, params));
         });
     },
-    getcategory: params => {
+    getCategory: params => {
         return new Promise((resolve, reject) => {
             resolve(apiService.REQUESTZBPGET(urls.category, params));
         });
     },
-    sitemap: urls.home
+    postSmtForm: params => {
+        return new Promise((resolve, reject) => {
+            resolve(apiService.REQUESTZBPPOST(urls.smtform, params));
+        });
+    },
+    getLogin: params => {
+        return new Promise((resolve, reject) => {
+            resolve(apiService.REQUESTZBPPOST(urls.login, params));
+        });
+    },
+    userAskList: params => {
+        return new Promise((resolve, reject) => {
+            resolve(apiService.REQUESTZBPPOST(urls.asklist, params));
+        });
+    },
+    getKongList: params => {
+        return new Promise((resolve, reject) => {
+            resolve(apiService.REQUESTZBPGET(urls.konglist, params));
+        });
+    },
+    getKongInfo: params => {
+        return new Promise((resolve, reject) => {
+            resolve(apiService.REQUESTZBPGET(urls.konginfo, params));
+        });
+    },
+    userAskInfo: params => {
+        return new Promise((resolve, reject) => {
+            resolve(apiService.REQUESTZBPPOST(urls.askinfo, params));
+        });
+    },
+    sitemap: urls.home,
+    toDate: toDate,
+    formatMsgTime: formatMsgTime
 };

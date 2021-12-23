@@ -1,6 +1,5 @@
 // 列表
-import { getsortslist } from '../../utils/request.js';
-import { toDate, formatMsgTime } from '../../utils/tool.js';
+import { getSortsList } from '../../utils/request.js';
 
 const app = getApp();
 
@@ -21,17 +20,16 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.getsortslist();
+        this.getSortsList();
     },
 
-    getsortslist() {
-        var _then = this;
-        getsortslist({
+    getSortsList() {
+        getSortsList({
             'root_id': 0
         }).then(res => {
             var datas = res.data.list;
-            _then.setData({
-                navList: _then.data.navList.concat(datas)
+            this.setData({
+                navList: this.data.navList.concat(datas)
             });
         });
     },
@@ -43,11 +41,27 @@ Page({
             url: '/pages/list/index?id=' + id
         });
     },
-    /**
- * 生命周期函数--监听页面显示
- */
-    onShow: function () {
 
+    // 刷新
+    refresh() {
+        this.setData({
+            state: true,
+            id: '',
+            title: '',
+            intro: '',
+            page: '1',
+            navList: []
+        });
+
+        this.getSortsList();
+        swan.hideNavigationBarLoading();
+        swan.stopPullDownRefresh();
+    },
+
+    /**
+    * 生命周期函数--监听页面显示
+    */
+    onShow: function () {
         swan.setNavigationBarTitle({ title: "分类中心" });
     },
 
@@ -55,7 +69,12 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-        this.refresh();
+        this.refresh(1);
+    },
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
+        this.turnPage();
     }
-
 });

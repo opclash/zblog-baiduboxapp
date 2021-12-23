@@ -2,7 +2,7 @@
     <view class="article-item" s-for="item, index in navList" s-key="{{index}}" bindtap="detailsBtn"
         data-id='{{item.ID}}' isCustom="{{true}}" hover-stay-time="100">
         <view >
-            <text class="title">{{item.Name}}</text>
+            <text class="title">{{ item.Name }}</text>
             <view class='desc'>{{ item.Intro }}</view>
         </view>
     </view>

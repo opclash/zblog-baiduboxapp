@@ -2,24 +2,14 @@
     <view class="post-header">
         <view class="mb-3" selectable='true'>
             {{ result.Title }}
-            <view s-if="{{sty==0}}" catchtap='score' style="display:inline-block;">
-                <view bindtap="playTTS">
-                    <image class="post-on" src="../../images/icon/erji.png" />
-                </view>
-            </view>
-            <view s-if="{{sty==1}}" style="display:inline-block;">
-                <view>
-                    <image class="post-on" src="../../images/icon/erji_fill.png" />
-                </view>
-            </view>
         </view>
     </view>
     <view class="info">
         <view class="content-desp">
             <view class="author-detail">
-                <image class="author-avator" mode="widthFix" src="https://opssh.cn/zb_users/avatar/0.png"></image>
+                <image class="author-avator" mode="widthFix" src="{{ result.AuthorAvatar }}"></image>
                 <view class="author-other">
-                    <view class="author-name">彧繎叔叔. <view class="author-v"></view>
+                    <view class="author-name">{{ result.AuthorName }}<view class="author-v"></view>
                     </view>
                     <view class="publish-date">阅读：{{ result.ViewNums }} 丨 发布：{{ result.PostTime }}</view>
                 </view>
@@ -29,9 +19,9 @@
             </view>
         </view>
     </view>
-    <view class="post-content">
+    <view class="post-content" selectable="true">
         <mp-html content="{{ result.Content }}" lazy-load="true"
-            container-style="white-space:pre-wrap;word-break:break-all" selectable="true" />
+            container-style="white-space:pre-wrap;word-break:break-all" selectable="{{true}}" />
     </view>
 </view>
 

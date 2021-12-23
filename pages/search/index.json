@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "在线搜索"
+    "navigationBarTitleText": "内容搜索",
+    "usingComponents": {
+        "search": "dynamicLib://swanGov/search-page"
+    }
 }

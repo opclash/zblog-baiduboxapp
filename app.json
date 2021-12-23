@@ -22,6 +22,9 @@
         },
         "swanGov": {
             "provider": "swan-gov"
+        },
+        "swanKit": {
+            "provider": "swan-serverless-kit"
         }
     },
     "tabBar": {
@@ -55,7 +58,6 @@
             }
         ]
     },
-    "requiredBackgroundModes": ["audio"],
     "networkTimeout": {
         "request": 30000,
         "connectSocket": 10000,

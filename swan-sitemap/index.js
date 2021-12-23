@@ -1,4 +1,4 @@
-import { toDate } from '../utils/tool.js';
+
 import utils from '../utils/request.js';
 
 Page({
@@ -25,26 +25,19 @@ Page({
 
             header: {
                 'content-type': 'application/json'
-                // 'Cache-Control': 'max-age=43200'
             },
             data: {
                 // 参数中需携带页码参数，此为示例，可根据实际情况传入其他所需参数
                 page: currentPage
             },
-            // 开启云加速服务
-            // cloudCache: true,
             success: res => {
 
                 if (res.statusCode === 200) {
                     let resData = res.data;
                     let list = resData.data.list
-                    // 根据返回数据更新列表。如请求返回格式不符合模板数据 listData 的要求格式，需调整格式后再赋值给 listData。
-                    // listData 的格式要求为：
-                    // Array<{title:string, path:string, releaseDate:DateString}>，详见下节 “list-data 项格式说明”
-                    console.log(res)
 
                     for (var i = 0; i < resData.data.list.length; i++) {
-                        resData.data.list[i]["PostTime"] = toDate(Number(resData.data.list[i]["PostTime"]) * 1000, 1);
+                        resData.data.list[i]["PostTime"] = utils.toDate(Number(resData.data.list[i]["PostTime"]) * 1000, 1);
                     }
 
                     let newTecherList = list.map(item => ({
