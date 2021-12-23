@@ -1,5 +1,5 @@
 # zblog-baiduboxapp
-Zblog 1.7.1 百度小程序源码，采用 Zblog 1.7.1 原生API协议，为 Z-Blog 做出一点点微不足道的贡献，希望它会更好！
+Zblog 1.7.1 百度小程序源码，采用 Zblog 原生API协议，开发后台基于 Zblog 测试版，为 Z-Blog 做出一点点微不足道的贡献，希望它会更好！
 <p align="center">
 <img src="https://oss.opssh.cn/zb_users/upload/2021/07/202107041625356566325110.png">
 </p>
