@@ -16,7 +16,7 @@ Page({
             path: 'pages/home/index&_swebfr=0',
             title: '彧繎博客',
             content: '关注互联网服务,分享极客精神!',
-            images: 'https://opssh.cn/logo.png'
+            images: 'https://oss.opssh.cn/zb_users/upload/2021/12/202112257114_180.png'
         },
         detailPath: '',
         // 底部互动 bar 的配置
@@ -45,9 +45,6 @@ Page({
 		}
     },
 
-    /**
-     * 文章数据获取--数据调用加载
-     */
     getArticle() {
         utils.getArticle({
             id: this.data.id
@@ -83,16 +80,6 @@ Page({
                 'result': post,
                 'RelatedList': post.RelatedList
             });
-
-            var info = {
-                'result': post,
-                'RelatedList': post.RelatedList
-            }
-
-            swan.setStorage({
-                key: "zblog-post",
-                data: info
-            });
         });
     },
 
@@ -108,17 +95,13 @@ Page({
             });
             var article = res.data.post;
             res.data.post.UpdateTime = utils.toDate(Number(res.data.post.UpdateTime) * 1000, 1);
-            console.log(res.data.post.UpdateTime)
             swan.setPageInfo({
                 title: article.Title,
                 keywords: article.TagsName,
                 description: article.Intro.replace(/<[^>]+>/g, ""),
                 articleTitle: article.Title,
                 releaseDate: res.data.post.UpdateTime,
-                image: article.Thumb,
-                visit: {
-                    pv: article.ViewNums
-                }
+                image: article.Thumb
             })
         })
     },
@@ -131,9 +114,6 @@ Page({
         });
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
     onReady: function () {
         requireDynamicLib('myDynamicLib').listenEvent();
     },
@@ -168,6 +148,5 @@ Page({
                 });
             });
         }
-
     }
 });

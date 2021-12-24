@@ -10,14 +10,11 @@ Page({
         state: false,
         navShow: false,
         swiperCurrent: "",
-        //轮播图圆点
         swiperH: "265",
-        //这是swiper框要动态设置的高度属性
     },
     swiperChange: function (e) {
         this.setData({
             swiperCurrent: e.detail.current
-            //获取当前轮播图片的下标
         })
     },
     imgHeight: function (e) {

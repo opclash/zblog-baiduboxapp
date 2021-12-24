@@ -1,5 +1,5 @@
 {
-    "appid": "你的ID号",
+    "appid": "自己的ID",
     "compilation-args": {
         "common": {
             "babelSetting": {

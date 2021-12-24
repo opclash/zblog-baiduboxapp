@@ -1,5 +1,6 @@
 <!--pages/search/search.wxml-->
 <search
+    s-if="{{ searchqh! = 0 }}"
     pageTitle="{{pageTitle}}"
     searchBoxConf="{{searchBoxConf}}"
     searchMode="{{searchMode}}"
@@ -7,3 +8,30 @@
     historyMode="{{historyMode}}"
     appkey="{{appkey}}"
 />
+
+<view class="search-header" s-else>
+    <view class="search-bar" bindtap="searchBtn">
+        <input type="text" placeholder="填写相关内容关键词" value="{{keyword}}" confirm-type="search" focus="{{!keyword.length}}"
+            bindconfirm="searchSubmit" class="search-input" />
+        <image bindtap="searchSubmit" class="search-icon" src="../../images/icon/search-icon.svg" mode="aspectFill" />
+    </view>
+</view>
+<view style="text-align: center;" s-if="{{!keyword.length}}">
+    <image src=""></image>
+    <view style="color: #636363;">请输入相关关键词</view>
+</view>
+<!-- 列表 -->
+<view class="container" s-if="{{keyword}}">
+        <view s-for="item, index in conList.data.list" s-key="{{index}}" bindtap="detailsBtn" data-id='{{item.ID}}'>
+            <view class="wutu">
+                <view class="list-content p-0">
+                    <view class="list-body">
+                        {{item.Title}}
+                    </view>
+                    <view class="list-desc">
+                        <rich-text nodes="{{item.Intro}}" class="h-2x " type="text"></rich-text>
+                    </view>
+                </view>
+            </view>
+        </view>
+</view>
