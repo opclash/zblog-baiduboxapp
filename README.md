@@ -34,20 +34,4 @@ Zblog 1.7.1 百度小程序源码，采用 Zblog 原生API协议，开发后台�
 <li>修改 project.swan.json 内的 appid</li>
 
 <h2>robots说明</h2>
-<p>
-User-agent: Baiduspider 
-Allow: /pages/home/index
-Allow: /pages/about/index
-Allow: /pages/article/index?id=*
-Allow: /pages/list/index?id=*
-Disallow: /pages/search/
-Disallow: /pages/search/index
-Disallow: /pages/sorts/
-Disallow: /pages/sorts/index
-Disallow: /pages/list/
-Disallow: /pages/list/index
-Disallow: /swan-sitemap/
-Disallow: /swan-sitemap/index
-User-agent: *
-Disallow: /
-</p>
+<li>小程序资源抓取 robots 文件配置，请查看源代码根目录下的 robots.txt，如果允许其他搜索引擎抓取删除 User-agent: * Disallow: /，目前只发现神马搜索会收录。</li>
