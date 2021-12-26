@@ -6,7 +6,7 @@ Page({
         conList: [],
         newTecherList: true,
         pageTitle: '内容搜索',
-        appkey: '你自己的key',
+        appkey: 'U1K9cxiyxwimErUWfOo06sBsvER6f5dP',
         searchBoxConf: {
             placeholder: '请填写搜索词',
             needVoice: false
