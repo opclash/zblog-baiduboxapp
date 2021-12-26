@@ -34,4 +34,6 @@ Zblog 1.7.1 百度小程序源码，采用 Zblog 原生API协议，开发后台�
 <li>修改 project.swan.json 内的 appid</li>
 
 <h2>robots说明</h2>
-<li>小程序资源抓取 robots 文件配置，请查看源代码根目录下的 robots.txt，如果允许其他搜索引擎抓取删除 User-agent: * Disallow: /，目前只发现神马搜索会收录。</li>
+<li>小程序资源抓取 robots 文件配置，请查看源代码根目录下的 robots.txt</li>
+<li>如果允许其他搜索引擎抓取删除 User-agent: * Disallow: /</li>
+<li>目前只发现神马、搜索会收录</li>
