@@ -32,3 +32,22 @@ Zblog 1.7.1 百度小程序源码，采用 Zblog 原生API协议，开发后台�
 <h2>使用说明</h2>
 <li>修改 config.js 内的 域名</li>
 <li>修改 project.swan.json 内的 appid</li>
+
+<h2>robots说明</h2>
+<p>
+User-agent: Baiduspider 
+Allow: /pages/home/index
+Allow: /pages/about/index
+Allow: /pages/article/index?id=*
+Allow: /pages/list/index?id=*
+Disallow: /pages/search/
+Disallow: /pages/search/index
+Disallow: /pages/sorts/
+Disallow: /pages/sorts/index
+Disallow: /pages/list/
+Disallow: /pages/list/index
+Disallow: /swan-sitemap/
+Disallow: /swan-sitemap/index
+User-agent: *
+Disallow: /
+</p>
