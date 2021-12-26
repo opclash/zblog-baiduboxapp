@@ -3,6 +3,21 @@ Zblog 1.7.1 百度小程序源码，采用 Zblog 原生API协议，开发后台�
 <p align="center">
 <img src="https://oss.opssh.cn/zb_users/upload/2021/07/202107041625356566325110.png">
 </p>
+
+<h2>小程序依赖</h2>
+<li>依赖Z-Blog 1.7.1 的API接口，无需任何插件</li>
+<li>打开后台->网站设置->API设置，打开 启用API协议开关 并提交即可</li>
+
+<h2>服务器方面</h2>
+<li>开启 https</li>
+<li>SSL加密证书配置一定要正确，不然可能导致加载白屏</li>
+
+<h2>使用说明</h2>
+<li>修改源代码 config.js 内的 域名</li>
+<li>修改源代码 project.swan.json 内的 appid</li>
+<li>修改源代码 \pages\search\index.js 内的 appkey</li>
+<li>上传到百度小程序后台 robots.txt 文件，审核前就上传</li>
+
 <h2>反馈中心地址</h2>
 <li>肠胃炎犯了，更新有点慢</li>
 <li>遇到问题可以留言，有什么想法也可以留言</li>
@@ -25,10 +40,7 @@ Zblog 1.7.1 百度小程序源码，采用 Zblog 原生API协议，开发后台�
 <li>支持 视频、音频播放</li>
 <li>拥有 首页、列表页、独立页</li>
 
-<h2>小程序依赖</h2>
-<li>依赖Z-Blog 1.7.1 的API接口，无需任何插件</li>
-<li>打开后台->网站设置->API设置，打开 启用API协议开关 并提交即可</li>
-
-<h2>使用说明</h2>
-<li>修改 config.js 内的 域名</li>
-<li>修改 project.swan.json 内的 appid</li>
+<h2>robots说明</h2>
+<li>小程序资源抓取 robots 文件配置，请查看源代码根目录下的 robots.txt</li>
+<li>如果允许其他搜索引擎抓取删除 User-agent: * Disallow: /</li>
+<li>目前只发现神马、搜索会收录</li>
