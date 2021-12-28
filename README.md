@@ -2,10 +2,10 @@
 <h2>zblog-baiduboxapp</h2>
 <P>Zblog 1.7.1 百度小程序源码，采用 Zblog 原生API协议，开发后台基于 Zblog 测试版，为 Z-Blog 做出一点点微不足道的贡献，希望它会更好！</P>
 <p align="center">
-<a href="https://gitee.com/link?target=https%3A%2F%2Fa.paddle.com%2Fv2%2Fclick%2F16413%2F119403%3Flink%3D1227">
+<a href="https://opssh.cn/fenxiang/35.html" target="_blank">
 <img src="https://img.shields.io/badge/zblog%20baiduboxapp-By%20彧%20繎%20叔%20叔%20-gray.svg?colorA=655BE1&amp;colorB=4F44D6&amp;style=for-the-badge">
 </a>
-<a href="https://gitee.com/link?target=https%3A%2F%2Fa.paddle.com%2Fv2%2Fclick%2F16413%2F119403%3Flink%3D2345">
+<a href="https://opssh.cn/" target="_blank">
 <img src="https://img.shields.io/badge/>_彧繎'%20Blog-https://%20opssh.cn%20%E2%86%92-gray.svg?colorA=61c265&amp;colorB=4CAF50&amp;style=for-the-badge">
 </a>
 </p>
