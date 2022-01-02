@@ -1,3 +1,5 @@
 {
-
+    "usingComponents": {
+        "banner": "dynamicLib://swanKit/banner"
+    }
 }
