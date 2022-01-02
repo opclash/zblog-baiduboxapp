@@ -94,6 +94,8 @@ Page({
                 toolnav: res.data.toolnav,
                 navimg: res.data.info.navimg,
                 contacton: res.data.info.contacton,
+                appbanner: res.data.info.appbanner,
+                moduleId: res.data.info.moduleId,
                 onask: res.data.info.onask
             });
             swan.setNavigationBarTitle({
