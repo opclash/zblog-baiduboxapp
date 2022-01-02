@@ -8,9 +8,6 @@ const urls = {
   sortslist: api + '?mod=category&act=list&sortby=Order',
   articleinfo: api + '?mod=post',
   category: api + '?mod=category&act=get',
-  smtform: api + '?mod=yuran&act=smtform',
-  asklist: api + '?mod=yuran&act=asklist',
-  askinfo: api + '?mod=yuran&act=askinfo',
   cloudCache: config.cloudCache
 };
 
