@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<!-- 默认轮播图 -->
 <view class="swiper-box" s-if="{{ contacton }}">
     <swiper class="banner" style='height:{{swiperH}}' bindchange="swiperChange" autoplay="true" interval="3000"
         duration="500" circular="true">
@@ -17,7 +18,9 @@
         </block>
     </view>
 </view>
-<!-- 轮播图 -->
+<!-- 百度轮播图 -->
+<banner moduleId="{{ moduleId }}" bannerHeight="230" s-if="{{ appbanner }}"/>
+<!-- 首页导航 -->
 <view class="index-columns-cat" style="margin-top:8px;">
     <view class="swiper-wrapper" s-for="item, index in toolnav" s-key="{{index}}">
 
