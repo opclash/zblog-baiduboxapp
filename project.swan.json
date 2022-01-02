@@ -14,7 +14,7 @@
     },
     "host": "baiduboxapp",
     "preview": {
-        "packageId": 1502445
+        "packageId": 1515801
     },
     "projectname": "彧繎百度智能小程序",
     "publish": {
@@ -29,8 +29,8 @@
     },
     "swan": {
         "baiduboxapp": {
-            "swanJsVersion": "3.360.26",
-            "extensionJsVersion": "1.21.2"
+            "extensionJsVersion": "1.21.2",
+            "swanJsVersion": "3.360.26"
         }
     }
 }
