@@ -1,6 +1,7 @@
 // 详情页
 const app = getApp();
 import utils from '../../utils/request.js';
+
 Page({
     data: {
         id: '',
@@ -103,6 +104,12 @@ Page({
                 releaseDate: res.data.post.UpdateTime,
                 image: article.Thumb
             })
+        });
+        utils.getSettings({
+        }).then(res => {
+            this.setData({
+                comlist: res.data.info.comlist,
+            });
         })
     },
 
