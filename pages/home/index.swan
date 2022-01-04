@@ -36,7 +36,7 @@
     <view s-for="item, index in conList" s-key="index" bindtap="detailsBtn" data-id='{{item.ID}}' hover-stay-time="100">
 
         <view class="list-item" s-if="{{ item.Thumb.length  => 3 }}">
-            <view class="media media-3x2" s-if="{{ item.videoon!=1 }}">
+            <view class="media media-3x2">
                 <image class="media-content" src="{{item.Thumb[0]}}" mode="aspectFill" lazy-load="true" />
             </view>
             <view class="list-content">

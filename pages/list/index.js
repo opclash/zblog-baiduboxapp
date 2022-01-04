@@ -73,7 +73,7 @@ Page({
         }).then(res => {
             swan.setNavigationBarTitle({ title: res.data.category.Name });
             swan.setPageInfo({
-                title: res.data.category.Name + ' - 彧繎博客',
+                title: res.data.category.Name,
                 keywords: res.data.category.Name,
                 description: res.data.category.Intro,
                 articleTitle: res.data.category.Name,
