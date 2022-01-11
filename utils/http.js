@@ -1,5 +1,4 @@
 import config from '../config.js';
-
 const api = config.domain + '/zb_system/api.php';
 
 const urls = {

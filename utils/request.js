@@ -113,9 +113,9 @@ function formatMsgTime(number) {
     } else if (1000 * 60 * 60 * 24 < milliseconds && milliseconds <= 1000 * 60 * 60 * 24 * 15) {
       numberStr = Math.round(milliseconds / (1000 * 60 * 60 * 24)) + '天前';
     } else if (milliseconds > 1000 * 60 * 60 * 24 * 15 && Y === now.getFullYear()) {
-      numberStr = M + '月' + D + '日' + ' ' + h + ':' + m;
+      numberStr = M + '/' + D;
     } else {
-      numberStr = Y + '年' + M + '月' + D + '日' + ' ' + h + ':' + m;
+      numberStr = Y + '/' + M + '/' + D;
     }
     return numberStr;
   }
@@ -175,36 +175,6 @@ module.exports = {
     getCategory: params => {
         return new Promise((resolve, reject) => {
             resolve(apiService.REQUESTZBPGET(urls.category, params));
-        });
-    },
-    postSmtForm: params => {
-        return new Promise((resolve, reject) => {
-            resolve(apiService.REQUESTZBPPOST(urls.smtform, params));
-        });
-    },
-    getLogin: params => {
-        return new Promise((resolve, reject) => {
-            resolve(apiService.REQUESTZBPPOST(urls.login, params));
-        });
-    },
-    userAskList: params => {
-        return new Promise((resolve, reject) => {
-            resolve(apiService.REQUESTZBPPOST(urls.asklist, params));
-        });
-    },
-    getKongList: params => {
-        return new Promise((resolve, reject) => {
-            resolve(apiService.REQUESTZBPGET(urls.konglist, params));
-        });
-    },
-    getKongInfo: params => {
-        return new Promise((resolve, reject) => {
-            resolve(apiService.REQUESTZBPGET(urls.konginfo, params));
-        });
-    },
-    userAskInfo: params => {
-        return new Promise((resolve, reject) => {
-            resolve(apiService.REQUESTZBPPOST(urls.askinfo, params));
         });
     },
     sitemap: urls.home,
