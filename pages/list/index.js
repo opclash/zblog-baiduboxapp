@@ -12,20 +12,8 @@ Page({
         navList: []
     },
 
-    onInit: function (options) {
-		if (!this.hasRequest) {
-			this.hasRequest = true;
-            this.data.id = options.id; // 接收id
-            this.getNavList();
-		}
-    },
-
     onLoad: function (options) {
-        if (!this.hasRequest) {
-			this.hasRequest = true;
-            this.data.id = options.id; // 接收id
-            this.getNavList();
-		}
+        this.getNavList();
     },
 
     getNavList() {

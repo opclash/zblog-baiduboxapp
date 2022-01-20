@@ -27,17 +27,8 @@ Page({
             swiperH: swiperH //设置高度
         });
     },
-    onInit() {
-		if (!this.hasRequest) {
-			this.hasRequest = true;
-            this.getHome();
-		}
-	},
-    onLoad() {
-        if (!this.hasRequest) {
-			this.hasRequest = true;
-            this.getHome();
-		}
+    onLoad: function (options) {
+        this.getHome();
     },
     getHome() {
 
