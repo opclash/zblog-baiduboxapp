@@ -4,16 +4,34 @@ import utils from '../../utils/request.js';
 const app = getApp();
 
 Page({
-
+    /**
+     * 页面的初始数据
+     */
     data: {
         state: false,
         id: '',
         page: '1',
-        navList: []
+        navList: [],
+        listname: '文章归档',
+        listdesc: '填写描述'
     },
 
+    onInit: function (options) {
+		if (!this.hasRequest) {
+			this.hasRequest = true;
+            this.data.id = options.id; // 接收id
+            this.getNavList();
+		}
+    },
+    /**
+     * 生命周期函数--监听页面加载
+     */
     onLoad: function (options) {
-        this.getNavList();
+        if (!this.hasRequest) {
+			this.hasRequest = true;
+            this.data.id = options.id; // 接收id
+            this.getNavList();
+		}
     },
 
     getNavList() {
@@ -55,6 +73,9 @@ Page({
         this.getNavList();
     },
 
+    /**
+    * 生命周期函数--监听页面显示
+    */
     onShow: function () {
         utils.getCategory({
             'id': this.data.id,
@@ -68,13 +89,23 @@ Page({
                 releaseDate: null,
                 image: null
             });
+            this.setData({
+                listname: res.data.category.Name,
+                listdesc: res.data.category.Intro,
+            });
         })
     },
 
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
     onPullDownRefresh: function () {
         this.refresh();
     },
 
+    /**
+     * 页面上拉触底事件的处理函数
+     */
     onReachBottom: function () {
         this.turnPage();
     }
