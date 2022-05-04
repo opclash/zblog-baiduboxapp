@@ -22,9 +22,6 @@
         },
         "swanGov": {
             "provider": "swan-gov"
-        },
-        "swanKit": {
-            "provider": "swan-serverless-kit"
         }
     },
     "tabBar": {
@@ -59,10 +56,10 @@
         ]
     },
     "networkTimeout": {
-        "request": 30000,
-        "connectSocket": 10000,
-        "uploadFile": 10000,
-        "downloadFile": 10000
+        "request": 3000,
+        "connectSocket": 1000,
+        "uploadFile": 1000,
+        "downloadFile": 1000
     },
     "permission": {
         "scope.userLocation": {
@@ -76,5 +73,6 @@
         "enableStore": true
     },
     "useSwanNews": true,
+    "lazyCodeLoading": "requiredComponents",
     "debug": true
 }

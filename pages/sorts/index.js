@@ -1,8 +1,10 @@
 // 列表
-import { getSortsList } from '../../utils/request.js';
 const app = getApp();
-Page({
+import { getSortsList } from '../../utils/request.js';
 
+Page({
+    // 使用一个标记位，确保只请求一次主数据
+	hasRequest: false,
     data: {
         state: true,
         id: '',
@@ -12,8 +14,11 @@ Page({
         navList: []
     },
 
-    onLoad: function (options) {
-        this.getSortsList();
+    onInit () {
+		if (!this.hasRequest) {
+			this.hasRequest = true;
+            this.getSortsList();
+		}
     },
 
     getSortsList() {
@@ -33,32 +38,6 @@ Page({
         swan.navigateTo({
             url: '/pages/list/index?id=' + id
         });
-    },
-
-    // 刷新
-    refresh() {
-        this.setData({
-            state: true,
-            id: '',
-            title: '',
-            intro: '',
-            page: '1',
-            navList: []
-        });
-
-        this.getSortsList();
-        swan.hideNavigationBarLoading();
-        swan.stopPullDownRefresh();
-    },
-
-    onShow: function () {
-        swan.setNavigationBarTitle({ title: "分类中心" });
-    },
-
-    onPullDownRefresh: function () {
-        this.refresh(1);
-    },
-    onReachBottom: function () {
-        this.turnPage();
     }
+
 });

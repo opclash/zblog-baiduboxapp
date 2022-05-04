@@ -1,39 +1,23 @@
 import urls from './http';
 
 //zbp原生
-function requestapi(url, params, method, resolve, reject,args = { token: false}) {
+function requestapi(url, params, method, resolve, reject) {
     swan.showLoading({
         title: "内容加载中...",
         mask: true
     });
 
-    if (args.token) {
-        var token = '';
-        try {
-            token = swan.getStorageSync('token')
-        } catch (e) {
-        }
-        var headers={
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer ' + token,
-        };
-        var cloudCache = false;
-    }else{
-        var headers={
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Cache-Control': 'nax-age=43200',
-        };
-        var cloudCache = urls.cloudCache;
-    }
+    var header = {
+        'content-type': 'application/x-www-form-urlencoded',
+        'access-control-allow-origin': '*'
+    };
 
     swan.request({
         url: url,
         data: dealParams(params),
         method: method,
-        header: headers,
-        cloudCache: cloudCache,
+        header: header,
+        cloudCache: false,
         defer: false,
         success: res => {
             swan.hideLoading();
@@ -41,27 +25,13 @@ function requestapi(url, params, method, resolve, reject,args = { token: false})
             if (res.data) {
                 if (res.data.code == 200) {
                     resolve(res.data);
-                } else if (data.code === 419) {
-                    swan.navigateTo({
-                        url: '/pages/login/index'
-                    });
-                } else if (data.code === 201) {
-                    swan.setStorageSync('login', 1);
-                    swan.setStorageSync('token', data.data.token);
-                    swan.setStorageSync('user', data.data.user);
-                    swan.switchTab({
-                        url: '/pages/home/index',
-                        success: res => {}
-                    });
                 } else {
                     reject(res.data);
                 }
             }
-        },
-        fail: function (error) {
-            reject("");
         }
     });
+
 }
 
 /**
@@ -71,24 +41,48 @@ function requestapi(url, params, method, resolve, reject,args = { token: false})
 
 function dealParams(params) {
     return params = Object.assign({}, params, {
+
     });
 }
 
 const apiService = {
     REQUESTZBPGET(url, params) {
-        var args = { token: false }
         return new Promise((resolve, reject) => {
-            requestapi(url, params, "GET", resolve, reject,args);
+            requestapi(url, params, "GET", resolve, reject);
         });
     },
 
     REQUESTZBPPOST(url, params) {
-        var args = { token: true }
         return new Promise((resolve, reject) => {
-            requestapi(url, params, "POST", resolve, reject,args);
+            requestapi(url, params, "POST", resolve, reject);
         });
     }
 };
+
+function htmlspecialchars(str)
+{
+    str = str
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/<section/g, '<div')
+    .replace(/\/section>/g, '\div>')
+    .replace(/&nbsp;/g, ' ')
+
+    .replace(/pre class="prism-highlight/g, 'pre style="overflow: auto; padding-top: 22px; padding-bottom: 22px; color: #61aeee; font-size: 14px; background-color: #282c34; padding: 1em; margin: .5em 0;" class="prism-highlight language-php" selectable="true" space="ensp"')
+    .replace(/<img/gi, '<img class="rich-img" style="max-width:100%!important;margin-top: 1em;margin-bottom: 1em;" ')
+    .replace(/<table/gi, '<table style="border-collapse: collapse; margin: 0 0 1rem; word-break: normal; border-spacing: 0; text-align:center; width: 99.9%;" ')
+
+    .replace(/<td([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<td')
+    .replace(/<td([\s\w"=\/\.:;]+)((?:(class="[^"]+")))/ig, '<td')
+    .replace(/<td>/ig, '<td style="border: 1px solid #f2f2f5;">')
+    .replace(/<h2([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<h2')
+    .replace(/<h2([\s\w"=\/\.:;]+)((?:(class="[^"]+")))/ig, '<h2')
+    .replace(/<h2>/ig, '<h2 style="border-bottom: 1px solid #dfe2ef;padding: 0 0 1rem;font-size: 20px;">');
+
+    return str;
+}
 
 
 function formatMsgTime(number) {
@@ -113,7 +107,7 @@ function formatMsgTime(number) {
     } else if (1000 * 60 * 60 * 24 < milliseconds && milliseconds <= 1000 * 60 * 60 * 24 * 15) {
       numberStr = Math.round(milliseconds / (1000 * 60 * 60 * 24)) + '天前';
     } else if (milliseconds > 1000 * 60 * 60 * 24 * 15 && Y === now.getFullYear()) {
-      numberStr = M + '/' + D;
+      numberStr = Y + '/' + M + '/' + D;
     } else {
       numberStr = Y + '/' + M + '/' + D;
     }
@@ -179,5 +173,6 @@ module.exports = {
     },
     sitemap: urls.home,
     toDate: toDate,
-    formatMsgTime: formatMsgTime
+    formatMsgTime: formatMsgTime,
+    htmlspecialchars: htmlspecialchars
 };

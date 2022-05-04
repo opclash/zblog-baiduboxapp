@@ -1,8 +1,9 @@
 // 详情页
 const app = getApp();
 import utils from '../../utils/request.js';
-
 Page({
+    // 使用一个标记位，确保只请求一次主数据
+	hasRequest: false,
     data: {
         id: '',
         result: {},
@@ -15,50 +16,37 @@ Page({
         commentParam: {
             snid: '0',
             path: 'pages/home/index&_swebfr=0',
-            title: '彧繎博客',
-            content: '关注互联网服务,分享极客精神!',
-            images: 'https://oss.opssh.cn/zb_users/upload/2021/12/202112257114_180.png'
+            title: '网站名',
+            content: '网站描述',
+            images: '网站图片'
         },
         detailPath: '',
         // 底部互动 bar 的配置
         toolbarConfig: {
-            moduleList: ['comment', 'like', 'favor', 'share'],
+            moduleList: ['comment', 'like', 'favor'],
             // 若 moduleList 中配置有 share 模块，默认是有，则该属性为必填，title 必传
             share: {
-                title: '彧繎博客',
-                content: '关注互联网服务,分享极客精神!',
+                title: '网站名',
+                content: '网站描述',
                 path: '/pages/home/index'
             }
         }
     },
-
-    onLoad: function (options) {
-        this.data.id = options.id; // 接收id
-        this.getArticle();
+	onInit: function (options) {
+		if (!this.hasRequest) {
+            this.hasRequest = true;
+            this.data.id = options.id;
+            this.getArticle();
+		}
     },
 
+    // 文章数据获取--数据调用加载
     getArticle() {
         utils.getArticle({
             id: this.data.id
         }).then(res => {
             const post = res.data.post;
-            post.Content = post.Content
-            .replace(/&amp;/g, '&')
-            .replace(/&lt;/g, '<')
-            .replace(/&gt;/g, '>')
-            .replace(/&quot;/g, '"')
-            .replace(/<section/g, '<div')
-            .replace(/\/section>/g, '\div>')
-            .replace(/&nbsp;/g, ' ')
-            .replace(/pre class="prism-highlight/g, 'pre style="overflow: auto; padding-top: 22px; padding-bottom: 22px; color: #690; font-size: 14px; background-color: #f2f4fc; padding: 1em; margin: .5em 0;" class="prism-highlight language-php" selectable="true" space="ensp"')
-            .replace(/<img/gi, '<img class="rich-img" style="max-width:100%!important;" ')
-            .replace(/<td([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<td')
-            .replace(/<td([\s\w"=\/\.:;]+)((?:(class="[^"]+")))/ig, '<td')
-            .replace(/<td>/ig, '<td style="border: 1px solid #f2f2f5;">')
-            .replace(/<h2([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<h2')
-            .replace(/<h2([\s\w"=\/\.:;]+)((?:(class="[^"]+")))/ig, '<h2')
-            .replace(/<h2>/ig, '<h2 style="border-bottom: 1px solid #dfe2ef;padding: 0 0 1rem;font-size: 20px;">');
-
+            post.Content=utils.htmlspecialchars(post.Content);
             post.PostTime = utils.formatMsgTime(Number(post.PostTime) * 1000, 1);
             post.UpdateTime = utils.formatMsgTime(Number(post.UpdateTime) * 1000, 1);
             this.setData({
@@ -74,13 +62,10 @@ Page({
                 'detailPath': '/pages/article/index?id=' + this.data.id,
                 'result': post,
                 'RelatedList': post.RelatedList
-            });
+            })
         });
     },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
     onShow: function () {
         utils.getArticle({
             id: this.data.id,
@@ -115,6 +100,9 @@ Page({
         });
     },
 
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
     onReady: function () {
         requireDynamicLib('myDynamicLib').listenEvent();
     },
@@ -139,15 +127,23 @@ Page({
         }
     },
 
+    score: function (e) {
+        //点击按钮，样式改变
+        this.setData({
+          sty: 1
+        });
+    },
+
     // 取消事件后提示信息
     statuschange(e) {
         if (e.detail && e.detail.isFavor === false) {
             setTimeout(() => {
                 swan.showToast({
-                    title: '我还他妈以为爱情来了！',
+                    title: '我他妈还以为是爱情',
                     icon: 'none'
                 });
             });
         }
     }
+
 });

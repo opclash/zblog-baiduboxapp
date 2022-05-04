@@ -1,6 +1,6 @@
 <!--pages/search/search.wxml-->
 <search
-    s-if="{{ searchqh! = 0 }}"
+    s-if="{{ searchqh!=0 }}"
     pageTitle="{{pageTitle}}"
     searchBoxConf="{{searchBoxConf}}"
     searchMode="{{searchMode}}"
@@ -16,22 +16,28 @@
         <image bindtap="searchSubmit" class="search-icon" src="../../images/icon/search-icon.svg" mode="aspectFill" />
     </view>
 </view>
+
 <view style="text-align: center;" s-if="{{!keyword.length}}">
     <image src=""></image>
     <view style="color: #636363;">请输入相关关键词</view>
 </view>
 <!-- 列表 -->
 <view class="container" s-if="{{keyword}}">
-        <view s-for="item, index in conList.data.list" s-key="{{index}}" bindtap="detailsBtn" data-id='{{item.ID}}'>
-            <view class="wutu">
-                <view class="list-content p-0">
-                    <view class="list-body">
-                        {{item.Title}}
-                    </view>
-                    <view class="list-desc">
-                        <rich-text nodes="{{item.Intro}}" class="h-2x " type="text"></rich-text>
-                    </view>
+    <view s-for="item, index in conList.data.list" s-key="{{index}}" bindtap="detailsBtn" data-id='{{item.ID}}'>
+        <view class="wutu">
+            <view class="list-content p-0">
+                <view class="list-body">
+                    {{item.Title}}
+                </view>
+                <view class="list-desc">
+                    <rich-text nodes="{{item.Intro}}" class="h-2x " type="text"></rich-text>
+                </view>
+                <view class="list-footer">
+                    <text class="item-meta">分类：{{item.CateName}}</text>
+                    <text class="flex-fill"></text>
+                    <text class="align-middle">阅读量：{{item.ViewNums}}</text>
                 </view>
             </view>
         </view>
+    </view>
 </view>

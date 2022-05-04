@@ -6,7 +6,7 @@ Page({
         conList: [],
         newTecherList: true,
         pageTitle: '内容搜索',
-        appkey: 'U1K9cxiyxwimErUWfOo06sBsvER6f5dP',
+        appkey: '你自己的appkey',
         searchBoxConf: {
             placeholder: '请填写搜索词',
             needVoice: false
@@ -26,14 +26,13 @@ Page({
         });
         this.getSearch();
     },
-
     getSearch() {
         utils.getSearch({
             page: this.data.page,
             search: this.data.keyword
         }).then(res => {
             var datas = res;
-            let newTecherList = datas
+            let newTecherList = datas;
             this.setData({
                 conList: newTecherList
             });

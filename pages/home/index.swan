@@ -1,6 +1,5 @@
 <!--index.wxml-->
-<!-- 默认轮播图 -->
-<view class="swiper-box" s-if="{{ contacton }}">
+<view class="swiper-box">
     <swiper class="banner" style='height:{{swiperH}}' bindchange="swiperChange" autoplay="true" interval="3000"
         duration="500" circular="true">
         <block s-for="item, index in swiper" s-key="{{index}}">
@@ -14,63 +13,48 @@
     </swiper>
     <view class="dots">
         <block s-for="item, index in swiper" s-key="{{index}}">
-            <view class="dot {{index == swiperCurrent  ? 'active' : ''}}"></view>
+            <view class="dot {{index == swiperCurrent ? 'active' : ''}}"></view>
         </block>
     </view>
 </view>
-<!-- 百度轮播图 -->
-<banner moduleId="{{ moduleId }}" bannerHeight="230" s-if="{{ appbanner }}"/>
-<!-- 首页导航 -->
+<!-- 轮播图 -->
 <view class="index-columns-cat" style="margin-top:8px;">
     <view class="swiper-wrapper" s-for="item, index in toolnav" s-key="{{index}}">
-
         <navigator url="{{item.route}}" class="overlay-hover" hover-class="none">
-            <view class="swiper-img"style="background-image: url({{ navimg }});"></view>
+            <view class="swiper-img" style="background-image: url({{ navimg }});"></view>
             <view class="swiper-content">{{item.Imgurl}}</view>
         </navigator>
-
     </view>
 </view>
 <!-- 文章推荐 -->
 <view class="container">
     <view s-for="item, index in conList" s-key="index" bindtap="detailsBtn" data-id='{{item.ID}}' hover-stay-time="100">
-
-        <view class="list-item" s-if="{{ item.Thumb.length  => 3 }}">
-            <view class="media media-3x2">
+        <view class="list-item">
+            <view class="media media-3x2" s-if="{{ item.datuad!=1 && item.Thumb.length }}">
                 <image class="media-content" src="{{item.Thumb[0]}}" mode="aspectFill" lazy-load="true" />
             </view>
-            <view class="list-content">
-                <view class="list-body">
+            <view class="list-content {{ item.datuad===1?'p-0':''}}{{ item.Thumb.length===0?'p-0':''}}">
+                <view class="list-desc" s-if="{{ item.datuad!=0 }}">
+                    <rich-text nodes="{{item.Intro}}" class="h-2x " type="text"></rich-text>
+                </view>
+                <view class="media-video media-3x1" s-if="{{ item.datuad!=0 }}">
+                    <image class="media-content" src="{{item.Thumb[0]}}" mode="aspectFill" lazy-load="true" webp />
+                </view>
+                <view class="list-body" s-if="{{ item.datuad!=1 }}">
                     <view class="badge" s-if="{{ item.IsTop!=0 }}">推荐</view>{{item.Title}}
                 </view>
-
-                <view class="list-footer">
-                    <text class="item-meta">{{item.CateName}}</text>
-                    <text class="item-fenge">-</text>
-                    <text class="item-meta">{{item.Tagn[0]}}</text>
-                    <text class="flex-fill"></text>
-                    <text class="align-middle">{{item.PostTime}}</text>
-                </view>
-            </view>
-        </view>
-        <view class="wutu" s-else>
-            <view class="list-content p-0">
-                <view class="list-body">
-                   <view class="badge" s-if="{{item.IsTop!=0}}">推荐</view>{{item.Title}}
-                </view>
-                <view class="list-desc">
+                <view class="list-desc" s-if="{{ item.datuad!=1 && item.Thumb.length===0 }}">
                     <rich-text nodes="{{item.Intro}}" class="h-2x " type="text"></rich-text>
                 </view>
                 <view class="list-footer">
                     <text class="item-meta">{{item.CateName}}</text>
-                    <text class="item-fenge">-</text>
-                    <text class="item-meta">{{item.Tagn[0]}}</text>
+                    <text class="item-fenge" s-if="{{item.Tagn[0]}}">-</text>
+                    <text class="item-meta" s-if="{{item.Tagn[0]}}">{{item.Tagn[0]}}</text>
                     <text class="flex-fill"></text>
                     <text class="align-middle">{{item.PostTime}}</text>
                 </view>
             </view>
         </view>
-
     </view>
-        <view class="read-more cu-load {{!state?'loading':'over'}}"></view>
+    <view class="read-more cu-load {{!state?'loading':'over'}}"></view>
 </view>

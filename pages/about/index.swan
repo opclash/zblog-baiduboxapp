@@ -10,9 +10,9 @@
                         关于我们 <button type="button" style='float:right' class='kefu' open-type="contact">客服</button>
                     </view>
                     <view class="banner-text-border">
-                        <view class="banner-text-sm">彧繎博客（opssh.cn）创建于 2021年5月20日，一直在寻找一份属于我的宁静，那便是一个简单的技术博客，一片属于我的心灵净土。</view>
+                        <view class="banner-text-sm">填写你自己的描述</view>
                     </view>
-                 </view>
+                </view>
             </view>
         </view>
     </view>

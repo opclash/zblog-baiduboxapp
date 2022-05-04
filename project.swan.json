@@ -7,20 +7,25 @@
             },
             "enhance": true,
             "ignoreTransJs": false,
-            "imgCompress": true
+            "imgCompress": true,
+            "useCheapSourceMap": true,
+            "useThread": true
         },
         "options": [],
         "selected": -2
     },
     "host": "baiduboxapp",
     "preview": {
-        "packageId": 1515801
+        "packageId": 872349
     },
-    "projectname": "彧繎百度智能小程序",
+    "projectname": "zblog-baiduboxapp",
     "publish": {
         "hideTips": true,
-        "tips": [],
-        "version": "1.1.0"
+        "tips": [
+            "小程序包内容将被百度解析和收录，用于内容的风险控制。",
+            "您已开通分享web化，请确保分享web化体验无问题后，再进行发布。"
+        ],
+        "version": "1.0.0"
     },
     "setting": {
         "autoAudits": false,
@@ -29,7 +34,7 @@
     },
     "swan": {
         "baiduboxapp": {
-            "swanJsVersion": "3.400.5",
+            "swanJsVersion": "3.450.13",
             "extensionJsVersion": "1.21.2"
         }
     }

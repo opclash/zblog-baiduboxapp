@@ -6,8 +6,7 @@ const urls = {
   home: api + '?mod=post&act=list&sortby=PostTime&order=desc',
   sortslist: api + '?mod=category&act=list&sortby=Order',
   articleinfo: api + '?mod=post',
-  category: api + '?mod=category&act=get',
-  cloudCache: config.cloudCache
+  category: api + '?mod=category&act=get'
 };
 
 export default urls;

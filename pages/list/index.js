@@ -1,35 +1,23 @@
 // 列表
+const app = getApp();
 import utils from '../../utils/request.js';
 
-const app = getApp();
-
 Page({
-    /**
-     * 页面的初始数据
-     */
+    // 使用一个标记位，确保只请求一次主数据
+	hasRequest: false,
     data: {
         state: false,
         id: '',
         page: '1',
         navList: [],
         listname: '文章归档',
-        listdesc: '填写描述'
+        listdesc: '汇聚本站所有文章内容，一切只为更好！'
     },
 
     onInit: function (options) {
 		if (!this.hasRequest) {
 			this.hasRequest = true;
-            this.data.id = options.id; // 接收id
-            this.getNavList();
-		}
-    },
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-        if (!this.hasRequest) {
-			this.hasRequest = true;
-            this.data.id = options.id; // 接收id
+            this.data.id = options.id;
             this.getNavList();
 		}
     },
@@ -56,7 +44,24 @@ Page({
                 });
             }
         });
+    },
 
+    onShow: function () {
+        utils.getCategory({
+            'id': this.data.id,
+        }).then(res => {
+            swan.setNavigationBarTitle({ title: res.data.category.Name });
+            swan.setPageInfo({
+                title: res.data.category.Name,
+                keywords: res.data.category.Name,
+                description: res.data.category.Intro,
+                articleTitle: res.data.category.Name
+            });
+            this.setData({
+                listname: res.data.category.Name,
+                listdesc: res.data.category.Intro,
+            });
+        })
     },
 
     // 查看详情
@@ -71,29 +76,6 @@ Page({
     turnPage() {
         this.data.page = Number(this.data.page) + 1;
         this.getNavList();
-    },
-
-    /**
-    * 生命周期函数--监听页面显示
-    */
-    onShow: function () {
-        utils.getCategory({
-            'id': this.data.id,
-        }).then(res => {
-            swan.setNavigationBarTitle({ title: res.data.category.Name });
-            swan.setPageInfo({
-                title: res.data.category.Name,
-                keywords: res.data.category.Name,
-                description: res.data.category.Intro,
-                articleTitle: res.data.category.Name,
-                releaseDate: null,
-                image: null
-            });
-            this.setData({
-                listname: res.data.category.Name,
-                listdesc: res.data.category.Intro,
-            });
-        })
     },
 
     /**

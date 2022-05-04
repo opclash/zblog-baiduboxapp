@@ -26,15 +26,14 @@
 </view>
 
 <view class="post-center" style="margin-top:12px;" s-if="{{ result.RelatedList.length > 0 }}">
-<view class="mb-md-4">相关阅读</view>
+    <view class="mb-md-4">相关阅读</view>
     <view class="post-li" s-for="item, index in result.RelatedList" s-key="{{ index }}" bindtap="detailsBtn" data-id='{{ item.id }}'>
         <view class="post-hx">{{ item.title }}</view>
     </view>
 </view>
 
 <view class="post-comment" style="margin-top:12px;" s-if="{{ comlist }}">
-<view class="mb-md-4" style="padding:0.75rem;">吐槽列表</view>
-<comment-list comment-param="{{ commentParam }}" detail-path="{{ detailPath }}"
-    toolbar-config="{{ toolbarConfig }}" bindclickcomment="clickComment">
-</comment-list>
+    <view class="mb-md-4" style="padding:0.75rem;">吐槽列表</view>
+    <comment-list comment-param="{{ commentParam }}" detail-path="{{ detailPath }}" toolbar-config="{{ toolbarConfig }}" bindclickcomment="clickComment">
+    </comment-list>
 </view>

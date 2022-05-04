@@ -1,0 +1,250 @@
+/* 首页列表样式 */
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 0.5rem !important;
+}
+
+.list-item {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    flex-direction: row;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    min-width: 0;
+    word-wrap: break-word;
+    box-shadow: 0px 0px 5px 0 rgb(158 158 158 / 9%);
+}
+
+.wutu {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0 rgb(158 158 158 / 9%);
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.media {
+    position: relative;
+    flex: 0 0 auto;
+    width: 32.8%;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+.media-video {
+    position: relative;
+    width: 100%;
+    margin-top: 0.5rem;
+    height: 230px;
+}
+
+.media:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.media-video:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.media-action {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 55px;
+    height: 55px;
+    background-image: url('./images/icon/play.png')
+}
+
+.media-3x2:after {
+    padding-top: 66.66666%;
+}
+
+.media-3x1:after {
+    padding-top: 33%;
+}
+
+.col-4 {
+    margin-top: 5px;
+    flex: 0 0 auto;
+    display: flex;
+}
+
+.media-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.list-content {
+    padding: 0 0 0 0.55rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 0;
+}
+
+.list-body {
+    flex: 1 1 auto;
+    -webkit-box-orient: vertical;
+    display: block;
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+.badge {
+    font-size: .625rem;
+    padding: 0.1875rem 0.5rem;
+    position: relative;
+    top: -2px;
+    margin-right: 0.25rem !important;
+    color: #fff;
+    background-image: linear-gradient(to right, #ff4740, #ffa069, #ffab55, #ff6c40);
+    background-size: 300% 100%;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.list-footer {
+    margin-top: 0.5rem;
+    color: #aeafb9 !important;
+    font-size: .75rem !important;
+    align-items: center !important;
+    flex: 1 1 auto !important;
+    display: flex !important;
+}
+
+.flex-fill {
+    flex: 1 1 auto !important;
+}
+
+.item-meta {
+    position: relative;
+    display: inline-block;
+}
+
+.item-fenge {
+    padding: 0 5px 0 5px;
+}
+
+.align-middle {
+    vertical-align: middle !important;
+}
+
+.list-desc {
+    color: #53535c !important;
+    font-size: .875rem !important;
+    margin-top: 0.5rem !important;
+}
+
+.h-2x {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* 顶部通栏样式 */
+.banner-item {
+    color: #fff;
+    position: relative;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+}
+
+.banner-media {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    flex-shrink: 0;
+    border-radius: inherit;
+    align-items: flex-start;
+}
+
+.banner-media:after {
+    content: '';
+    display: block;
+}
+
+.media-21x9:after {
+    padding-top: 66%;
+}
+
+.banner-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.banner-list {
+    padding: 0.75rem;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.banner-list-body {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+}
+
+.banner-list-auto {
+    margin-top: auto !important;
+}
+
+.banner-text-xl {
+    font-size: 1.25rem !important;
+}
+
+.banner-text-border {
+    position: relative;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    padding-top: 0.5rem !important;
+    margin-top: 0.5rem !important;
+    border-top: 1px solid #dee2e6 !important;
+}
+
+.banner-text-sm {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-size: 0.875rem !important;
+}
