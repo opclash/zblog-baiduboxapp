@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /pages/list/index
+Disallow: /pages/home/
+Disallow: /pages/search/
+Disallow: /pages/sorts/
+Disallow: /pages/list/
+Disallow: /pages/about/
+Disallow: /swan-sitemap/
+Disallow: /pages/swan-operate-news/
+User-agent: YisouSpider
+Disallow: /
