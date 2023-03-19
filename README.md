@@ -1,7 +1,7 @@
 <h2>zblog-baiduboxapp</h2>
 <p align="center">Z-Blog 百度小程序源码 </p>
 <p align="center">
-<a href="https://opssh.cn/fenxiang/35.html" target="_blank">
+<a href="https://opclash.com/fenxiang/35.html" target="_blank">
 <img src="https://img.shields.io/badge/yuran%20zixun-By%20彧%20繎%20叔%20叔%20-gray.svg?colorA=655BE1&amp;colorB=4F44D6&amp;style=for-the-badge">
 </a>
 <a href="https://opclash.com/" target="_blank">
